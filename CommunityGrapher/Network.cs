@@ -19,12 +19,13 @@
 // </copyright>
 // <summary>
 //    Project: CommunityGrapher
-//    Last updated: 05/25/2018
+//    Last updated: 06/07/2018
 //    Author: Pedro Sequeira
 //    E-mail: pedrodbs@gmail.com
 // </summary>
 // ------------------------------------------
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using QuickGraph;
@@ -35,8 +36,14 @@ namespace CommunityGrapher
     ///     Represents a network structure with a series of <see cref="Connection" /> between nodes, where each node has a
     ///     distinct <see cref="uint" /> identifier.
     /// </summary>
-    public class Network : UndirectedGraph<uint, Connection>
+    public class Network : UndirectedGraph<uint, Connection>, IDisposable
     {
+        #region Fields
+
+        private readonly Dictionary<uint, double> _weights = new Dictionary<uint, double>();
+
+        #endregion
+
         #region Properties & Indexers
 
         /// <summary>
@@ -47,7 +54,15 @@ namespace CommunityGrapher
         /// <summary>
         ///     Gets the weights associated with each node in this network.
         /// </summary>
-        public Dictionary<uint, double> Weights { get; } = new Dictionary<uint, double>();
+        public IReadOnlyDictionary<uint, double> Weights => this._weights;
+
+        #endregion
+
+        #region Public Methods
+
+        /// <inheritdoc />
+        public override string ToString() =>
+            $"Nodes: {this.VertexCount}, conn: {this.EdgeCount}, weight: {this.TotalWeight}";
 
         #endregion
 
@@ -64,8 +79,6 @@ namespace CommunityGrapher
 
             this.AddWeight(connection.Source, connection.Weight);
             this.AddWeight(connection.Target, connection.Weight);
-            this.TotalWeight += 2 * connection.Weight;
-
             return true;
         }
 
@@ -76,7 +89,7 @@ namespace CommunityGrapher
         /// <returns>A <see cref="bool" /> indicating whether the node was successfully added.</returns>
         public new bool AddVertex(uint node)
         {
-            this.Weights[node] = 0;
+            this._weights[node] = 0;
             return base.AddVertex(node);
         }
 
@@ -112,14 +125,12 @@ namespace CommunityGrapher
         /// </summary>
         /// <param name="connection">The connection to be removed.</param>
         /// <returns>A <see cref="bool" /> indicating whether the connection was successfully removed.</returns>
-        public new bool RemoveEdge(Connection connection)
+        public bool RemoveEdge(Connection connection)
         {
             if (!base.RemoveEdge(connection)) return false;
 
             this.RemoveWeight(connection.Source, connection.Weight);
             this.RemoveWeight(connection.Target, connection.Weight);
-            this.TotalWeight -= 2 * connection.Weight;
-
             return true;
         }
 
@@ -130,10 +141,16 @@ namespace CommunityGrapher
         /// <returns>A <see cref="bool" /> indicating whether the node was successfully removed.</returns>
         public new bool RemoveVertex(uint node)
         {
+            foreach (var edge in this.AdjacentEdges(node).ToArray())
+                this.RemoveEdge(edge);
+
             if (this.Weights.ContainsKey(node))
-                this.Weights.Remove(node);
+                this._weights.Remove(node);
+
             return base.RemoveVertex(node);
         }
+
+        public void Dispose() => this.Clear();
 
         #endregion
 
@@ -142,15 +159,17 @@ namespace CommunityGrapher
         private void AddWeight(uint vertex, double weight)
         {
             if (!this.Weights.ContainsKey(vertex))
-                this.Weights.Add(vertex, weight);
+                this._weights.Add(vertex, weight);
             else
-                this.Weights[vertex] += weight;
+                this._weights[vertex] += weight;
+            this.TotalWeight += weight;
         }
 
         private void RemoveWeight(uint vertex, double weight)
         {
-            if (this.Weights.ContainsKey(vertex))
-                this.Weights[vertex] -= weight;
+            if (!this.Weights.ContainsKey(vertex)) return;
+            this._weights[vertex] -= weight;
+            this.TotalWeight -= weight;
         }
 
         #endregion

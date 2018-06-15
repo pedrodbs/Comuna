@@ -1,4 +1,4 @@
-// ------------------------------------------
+﻿// ------------------------------------------
 // <copyright file="Node.cs" company="Pedro Sequeira">
 // 
 //     Copyright (c) 2018 Pedro Sequeira
@@ -18,21 +18,20 @@
 // 
 // </copyright>
 // <summary>
-//    Project: CommunityGrapher.D3
-//    Last updated: 05/26/2018
+//    Project: CommunityGrapher.Graphviz
+//    Last updated: 06/14/2018
 //    Author: Pedro Sequeira
 //    E-mail: pedrodbs@gmail.com
 // </summary>
 // ------------------------------------------
 
-using Newtonsoft.Json;
+using QuickGraph.Graphviz.Dot;
 
-namespace CommunityGrapher.D3
+namespace CommunityGrapher.Graphviz
 {
     /// <summary>
-    ///     Represents a node structure used to save a node of a <see cref="Network" /> to a D3 json file.
+    ///     Represents a node structure used to save a node of a <see cref="Network" /> to a Graphviz dot file.
     /// </summary>
-    [JsonObject]
     public class Node
     {
         #region Constructors
@@ -53,22 +52,64 @@ namespace CommunityGrapher.D3
         #region Properties & Indexers
 
         /// <summary>
+        ///     Gets or sets the node's color.
+        /// </summary>
+        public GraphvizColor Color { get; set; }
+
+        /// <summary>
         ///     Gets or sets the ID of the community of this node.
         /// </summary>
-        [JsonProperty(Constants.COMMUNITY_PROP)]
-        public uint Community { get; set; }
+        public uint Community { get; }
 
         /// <summary>
         ///     Gets or sets the ID of this node.
         /// </summary>
-        [JsonIgnore]
-        public string ID { get => this.IdNum.ToString(); set => this.IdNum = uint.Parse(value); }
+        public uint IdNum { get; }
 
         /// <summary>
-        ///     Gets or sets the ID of this node.
+        ///     Gets or sets a value indicating whether to show the node's label.
         /// </summary>
-        [JsonProperty(Constants.ID_PROP)]
-        public uint IdNum { get; set; }
+        public bool ShowLabel { get; set; }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <inheritdoc />
+        public override bool Equals(object obj)
+        {
+            return !(obj is null) &&
+                   (ReferenceEquals(this, obj) || obj.GetType() == this.GetType() && this.Equals((Node) obj));
+        }
+
+        /// <inheritdoc />
+        public override int GetHashCode() => (int) this.IdNum;
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        ///     Tests whether the two nodes are equal.
+        /// </summary>
+        /// <param name="left">The first node.</param>
+        /// <param name="right">The second node.</param>
+        /// <returns>A <see cref="bool" /> indicating whether the two nodes are equal.</returns>
+        public static bool operator ==(Node left, Node right) => Equals(left, right);
+
+        /// <summary>
+        ///     Tests whether the two nodes are different (not equal).
+        /// </summary>
+        /// <param name="left">The first node.</param>
+        /// <param name="right">The second node.</param>
+        /// <returns>A <see cref="bool" /> indicating whether the two nodes are different.</returns>
+        public static bool operator !=(Node left, Node right) => !Equals(left, right);
+
+        #endregion
+
+        #region Private & Protected Methods
+
+        private bool Equals(Node other) => this.IdNum == other.IdNum;
 
         #endregion
     }

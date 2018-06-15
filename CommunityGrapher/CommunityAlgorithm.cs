@@ -19,7 +19,7 @@
 // </copyright>
 // <summary>
 //    Project: CommunityGrapher
-//    Last updated: 05/25/2018
+//    Last updated: 06/15/2018
 //    Author: Pedro Sequeira
 //    E-mail: pedrodbs@gmail.com
 // </summary>
@@ -75,13 +75,16 @@ namespace CommunityGrapher
         ///     Creates a new <see cref="CommunityAlgorithm" /> according to the provided graph.
         /// </summary>
         /// <param name="network">The network graph to extract communities from.</param>
-        /// <param name="popSize">The size of the network.</param>
-        /// <param name="numPasses">The number of passes for one level computation.</param>
-        /// <param name="minModularity">The criterion used to perform a new pass.</param>
-        public CommunityAlgorithm(Network network, uint popSize, int numPasses, double minModularity)
+        /// <param name="numPasses">
+        ///     The number of passes for one level computation.  If -1, the algorithm computes as many passes as needed to increase
+        ///     modularity.
+        /// </param>
+        /// <param name="minModularity">
+        ///     The criterion used to perform a new pass. If 0, even a minor increase is enough to perform one more pass.
+        /// </param>
+        public CommunityAlgorithm(Network network, int numPasses = -1, double minModularity = 1E-6)
         {
             this.Network = network;
-            this.Size = popSize;
             this.NumPasses = numPasses;
             this.MinModularity = minModularity;
 
@@ -99,20 +102,20 @@ namespace CommunityGrapher
         public HashSet<uint>[] Communities { get; private set; }
 
         /// <summary>
-        ///     Gets the network graph used to compute communities.
-        /// </summary>
-        public Network Network { get; }
-
-        /// <summary>
         ///     Gets the minimal modularity difference between passes. If 0, even a minor increase is enough to perform one more
         ///     pass.
         /// </summary>
         public double MinModularity { get; }
 
         /// <summary>
-        ///     Gets the community to which each node belongs.
+        ///     Gets the network graph used to compute communities.
         /// </summary>
-        public uint[] NodeCommunity { get; private set; }
+        public Network Network { get; }
+
+        /// <summary>
+        ///     Gets the community of each node.
+        /// </summary>
+        public uint[] NodesCommunities { get; private set; }
 
         /// <summary>
         ///     Gets the number of passes for one level computation. If -1, the algorithm computes as many passes as needed to
@@ -123,20 +126,11 @@ namespace CommunityGrapher
         /// <summary>
         ///     Gets the number of nodes in the network and size of all vectors.
         /// </summary>
-        public uint Size { get; }
+        public int Size => this.Network.VertexCount;
 
         #endregion
 
         #region Public Methods
-
-        /// <summary>
-        ///     Displays the community that each node in the network belongs to.
-        /// </summary>
-        public void Display()
-        {
-            for (var i = 0u; i < this.Size; i++)
-                Console.WriteLine($"Node: {i}, Comm: {this.NodeCommunity[i]}, In: {this._inm[i]}, Tot: {this._tot[i]}");
-        }
 
         /// <summary>
         ///     Displays the nodes belonging to each community.
@@ -147,7 +141,8 @@ namespace CommunityGrapher
             {
                 var nodes = this.Communities[i];
                 if (nodes.Count == 0) continue;
-                Console.WriteLine($"Community: {i}, Nodes: {1}", nodes.ToArray().ToVectorString());
+                Console.WriteLine(
+                    $"Community: {i}, Nodes: {nodes.ToArray().ToVectorString()}, In: {this._inm[i]}, Tot: {this._tot[i]}");
             }
         }
 
@@ -163,8 +158,21 @@ namespace CommunityGrapher
                 foreach (var edge in neighbours)
                 {
                     var neigh = edge.Source.Equals(i) ? edge.Target : edge.Source;
-                    Console.WriteLine($"{renumber[this.NodeCommunity[i]]} {renumber[this.NodeCommunity[neigh]]}");
+                    Console.WriteLine($"{renumber[this.NodesCommunities[i]]} {renumber[this.NodesCommunities[neigh]]}");
                 }
+            }
+        }
+
+        /// <summary>
+        ///     Displays the community that each node in the network belongs to.
+        /// </summary>
+        public void DisplayNodesCommunities()
+        {
+            for (var i = 0u; i < this.Size; i++)
+            {
+                var community = this.NodesCommunities[i];
+                Console.WriteLine(
+                    $"Node: {i}, Community: {community}, In: {this._inm[community]}, Tot: {this._tot[community]}");
             }
         }
 
@@ -175,32 +183,36 @@ namespace CommunityGrapher
         {
             var renumber = this.RenumberCommunities(out _);
             for (var i = 0u; i < this.Size; i++)
-                Console.WriteLine($"{i} {renumber[this.NodeCommunity[i]]}");
+                Console.WriteLine($"{i} {renumber[this.NodesCommunities[i]]}");
         }
 
         /// <summary>
         ///     Generates a <see cref="CommunityGrapher.Network" /> of the existing communities, i.e., without the nodes.
         /// </summary>
         /// <returns>The network graph of communities.</returns>
-        public Network GenerateCommunityGraph()
+        public Network GetCommunityNetwork()
         {
+            // renumbers communities
             var renumber = this.RenumberCommunities(out var final);
-
-            // compute communities
             var commNodes = new List<uint>[(int) final];
             for (var node = 0u; node < this.Size; node++)
             {
-                var comm = renumber[this.NodeCommunity[node]];
+                var comm = renumber[this.NodesCommunities[node]];
                 if (commNodes[comm] == null)
                     commNodes[comm] = new List<uint>();
 
                 commNodes[comm].Add(node);
             }
 
+            // add community vertexes
+            var commNetwork = new Network();
+            for (var comm = 0u; comm < commNodes.Length; comm++)
+                commNetwork.AddVertex(comm);
+
             // compute weighted graph
-            var graphBinary = new Network();
             for (var comm = 0u; comm < commNodes.Length; comm++)
             {
+                // compute weighted edges
                 var m = new Dictionary<uint, double>();
                 foreach (var node in commNodes[comm])
                 {
@@ -208,7 +220,7 @@ namespace CommunityGrapher
                     foreach (var edge in neighbours)
                     {
                         var neigh = edge.Source.Equals(node) ? edge.Target : edge.Source;
-                        var neighComm = renumber[this.NodeCommunity[neigh]];
+                        var neighComm = renumber[this.NodesCommunities[neigh]];
                         var neighWeight = edge.Weight;
 
                         if (!m.ContainsKey(neighComm))
@@ -218,19 +230,18 @@ namespace CommunityGrapher
                     }
                 }
 
-                //add community vertex
-                graphBinary.AddVertex(comm);
-
                 //add community edges
                 foreach (var commEdge in m)
-                    graphBinary.AddEdge(new Connection(comm, commEdge.Key, commEdge.Value));
+                    if (!commNetwork.ContainsEdge(comm, commEdge.Key) &&
+                        !commNetwork.ContainsEdge(commEdge.Key, comm))
+                        commNetwork.AddEdge(new Connection(comm, commEdge.Key, commEdge.Value));
             }
 
-            return graphBinary;
+            return commNetwork;
         }
 
         /// <summary>
-        ///     Compute the modularity of the current community partition.
+        ///     Gets the modularity of the current community partition.
         /// </summary>
         /// <returns>The modularity of the current community partition.</returns>
         public double GetModularity()
@@ -244,6 +255,12 @@ namespace CommunityGrapher
 
             return q;
         }
+
+        /// <summary>
+        ///     Gets the number of active communities, i.e., the communities with one or more elements belonging to it.
+        /// </summary>
+        /// <returns>The number of active communities.</returns>
+        public int GetNumberCommunities() => this.Communities.Count(comm => comm.Count > 0);
 
         /// <summary>
         ///     Initializes the community partition with the information stored in the given file.
@@ -262,7 +279,7 @@ namespace CommunityGrapher
                     if (!uint.TryParse(elems[0], out var node)) continue;
                     if (!uint.TryParse(elems[1], out var comm)) continue;
 
-                    var oldComm = this.NodeCommunity[node];
+                    var oldComm = this.NodesCommunities[node];
                     this.ComputeNeighourCommWeights(node);
 
                     this.Remove(node, oldComm, this._neighCommWeight[oldComm]);
@@ -286,10 +303,57 @@ namespace CommunityGrapher
         }
 
         /// <summary>
-        ///     Computes communities of the graph for one level.
+        ///     Renumbers each community according to the total number of communities (larger first) and by changing their ID to
+        ///     the lowest one possible. Tries to keep communities IDs if possible to avoid renumbering.
         /// </summary>
-        /// <returns><c>true</c>, if some nodes have been moved, <c>false</c> otherwise.</returns>
-        public bool Compute()
+        public void RenumberCommunities()
+        {
+            //collect stats about all communities
+            var oldCommStats = new Dictionary<uint, uint>(this.Size);
+            for (var node = 0u; node < this.Size; node++)
+            {
+                var comm = this.NodesCommunities[node];
+                if (!oldCommStats.ContainsKey(comm))
+                    oldCommStats[comm] = 1;
+                else
+                    oldCommStats[comm]++;
+            }
+
+            // creates dictionary with old -> new community ID and put communities with ID within range -- these remain unchanged
+            var newCommCount = oldCommStats.Count;
+            var oldToNewComms = new Dictionary<uint, uint>(this.Size);
+            for (var comm = 0u; comm < newCommCount; comm++)
+                if (oldCommStats.ContainsKey(comm))
+                {
+                    oldToNewComms[comm] = comm;
+                    oldCommStats.Remove(comm);
+                }
+
+            // sorts remaining communities by size and inserts each of them in a vague community ID
+            var sortedOldComms = oldCommStats.Keys.ToList();
+            sortedOldComms.Sort((x, y) => oldCommStats[y].CompareTo(oldCommStats[x]));
+            var oldCommIdx = 0;
+            for (var newComm = 0u; oldCommIdx < sortedOldComms.Count && newComm < newCommCount; newComm++)
+                if (!oldToNewComms.ContainsKey(newComm))
+                    oldToNewComms[sortedOldComms[oldCommIdx++]] = newComm;
+
+            //replaces community for all nodes
+            for (var node = 0u; node < this.Size; node++)
+            {
+                var oldComm = this.NodesCommunities[node];
+                this.Remove(node, oldComm, this._neighCommWeight[oldComm]);
+
+                var newComm = oldToNewComms[oldComm];
+                this.Insert(node, newComm, this._neighCommWeight[newComm]);
+            }
+        }
+
+        /// <summary>
+        ///     Computes communities in the graph iteratively until there are changes in any node's community or the changes in
+        ///     modularity are large enough.
+        /// </summary>
+        /// <returns><c>true</c>, if some node changed community, <c>false</c> otherwise.</returns>
+        public bool Update()
         {
             this.Reset();
 
@@ -302,9 +366,8 @@ namespace CommunityGrapher
             //var randomOrder = GetRandomOrder(this.Size);
 
             // repeat while:
-            //   - there is an improvement of modularity OR
-            //   - there is an improvement of modularity greater than a given epsilon OR
-            //   - a predefined number of passes have been performed
+            //   - there is an improvement of modularity greater than a given threshold OR
+            //   - a predefined number of passes has been performed
             do
             {
                 curMod = newMod;
@@ -315,23 +378,24 @@ namespace CommunityGrapher
                 // nodes are analyzed in descending order to ensure higher numbered nodes go to lowest-number communities
                 for (var n = 0u; n < this.Size; n++)
                 {
-                    var node = this.Size - n - 1;
+                    var node = (uint) this.Size - n - 1;
 
                     //var node = randomOrder[nodeTmp];
-                    var nodeComm = this.NodeCommunity[node];
+                    var nodeComm = this.NodesCommunities[node];
                     var nodeWeight = this.Network.Weights[node];
 
                     // compute all neighboring communities of current node
                     this.ComputeNeighourCommWeights(node);
 
                     // remove node from its current community
-                    this.Remove(node, nodeComm, this._neighCommWeight[nodeComm]);
+                    var commWeight = this._neighCommWeight[nodeComm];
+                    this.Remove(node, nodeComm, commWeight);
 
                     // compute the nearest community for node
                     // default choice for future insertion is the former community
                     var bestNeighComm = nodeComm;
-                    var bestNeighCommWeight = double.MinValue;
-                    var bestModGain = double.MinValue;
+                    var bestNeighCommWeight = commWeight;
+                    var bestModGain = 0d;
                     for (var i = 0u; i < this._numNeighComm; i++)
                     {
                         var neighComm = this._neighComm[i];
@@ -361,57 +425,11 @@ namespace CommunityGrapher
             return improvement;
         }
 
-        /// <summary>
-        ///     Renumbers each community according to the total number of communities (larger first) and by changing their ID to
-        ///     the lowest one possible. Tries to keep communities IDs if possible to avoid renumbering.
-        /// </summary>
-        public void RenumberCommunities()
-        {
-            //collect stats about all communities
-            var oldCommStats = new Dictionary<uint, uint>((int) this.Size);
-            for (var node = 0u; node < this.Size; node++)
-            {
-                var comm = this.NodeCommunity[node];
-                if (!oldCommStats.ContainsKey(comm))
-                    oldCommStats[comm] = 1;
-                else
-                    oldCommStats[comm]++;
-            }
-
-            // creates dictionary with old -> new community ID and put communities with ID within range -- these remain unchanged
-            var newCommCount = oldCommStats.Count;
-            var oldToNewComms = new Dictionary<uint, uint>((int) this.Size);
-            for (var comm = 0u; comm < newCommCount; comm++)
-                if (oldCommStats.ContainsKey(comm))
-                {
-                    oldToNewComms[comm] = comm;
-                    oldCommStats.Remove(comm);
-                }
-
-            // sorts remaining communities by size and inserts each of them in a vague community ID
-            var sortedOldComms = oldCommStats.Keys.ToList();
-            sortedOldComms.Sort((x, y) => oldCommStats[y].CompareTo(oldCommStats[x]));
-            var oldCommIdx = 0;
-            for (var newComm = 0u; oldCommIdx < sortedOldComms.Count && newComm < newCommCount; newComm++)
-                if (!oldToNewComms.ContainsKey(newComm))
-                    oldToNewComms[sortedOldComms[oldCommIdx++]] = newComm;
-
-            //replaces community for all nodes
-            for (var node = 0u; node < this.Size; node++)
-            {
-                var oldComm = this.NodeCommunity[node];
-                this.Remove(node, oldComm, this._neighCommWeight[oldComm]);
-
-                var newComm = oldToNewComms[oldComm];
-                this.Insert(node, newComm, this._neighCommWeight[newComm]);
-            }
-        }
-
         /// <inheritdoc />
         public void Dispose()
         {
             this.Network.Clear();
-            this.NodeCommunity = null;
+            this.NodesCommunities = null;
             this.Communities = null;
             this._neighCommWeight = null;
             this._neighComm = null;
@@ -423,26 +441,9 @@ namespace CommunityGrapher
 
         #region Private & Protected Methods
 
-        private static List<uint> GetRandomOrder(uint numElems)
-        {
-            var list = new List<uint>((int) numElems);
-            for (var i = 0; i < numElems; i++)
-                list.Add((uint) i);
-
-            var randList = new List<uint>((int) numElems);
-            while (list.Count > 0)
-            {
-                var index = Random.Next(list.Count);
-                randList.Add(list[index]);
-                list.RemoveAt(index);
-            }
-
-            return randList;
-        }
-
         /// <summary>
         ///     Computes the set of neighboring communities of a node for each community, gives the number of links from node to
-        ///     comm.
+        ///     community.
         /// </summary>
         /// <param name="node"></param>
         private void ComputeNeighourCommWeights(uint node)
@@ -451,7 +452,7 @@ namespace CommunityGrapher
                 this._neighCommWeight[this._neighComm[i]] = -1;
 
             // adds node community itself
-            this._neighComm[0] = this.NodeCommunity[node];
+            this._neighComm[0] = this.NodesCommunities[node];
             this._neighCommWeight[this._neighComm[0]] = 0;
             this._numNeighComm = 1;
 
@@ -460,7 +461,7 @@ namespace CommunityGrapher
             foreach (var edge in neighbours)
             {
                 var neigh = edge.Key;
-                var neighComm = this.NodeCommunity[neigh];
+                var neighComm = this.NodesCommunities[neigh];
                 var neighWeight = edge.Value;
 
                 if (neigh.Equals(node)) continue;
@@ -491,10 +492,8 @@ namespace CommunityGrapher
 
             var neighbours = this.Network.AdjacentEdges(node);
             foreach (var edge in neighbours)
-            {
-                var neigh = edge.Source.Equals(node) ? edge.Target : edge.Source;
-                if (neigh.Equals(node)) return edge.Weight;
-            }
+                if (edge.Source.Equals(edge.Target))
+                    return edge.Weight;
 
             return 0;
         }
@@ -521,7 +520,7 @@ namespace CommunityGrapher
             this._neighComm = new uint[this.Size];
             this._numNeighComm = 0;
 
-            this.NodeCommunity = new uint[this.Size];
+            this.NodesCommunities = new uint[this.Size];
             this._inm = new double[this.Size];
             this._tot = new double[this.Size];
             this.Communities = new HashSet<uint>[this.Size];
@@ -529,10 +528,10 @@ namespace CommunityGrapher
             // inits each node in its own community
             for (var i = 0u; i < this.Size; i++)
             {
-                this.NodeCommunity[i] = i;
+                this.NodesCommunities[i] = i;
                 this.Communities[i] = new HashSet<uint> {i};
                 this._neighCommWeight[i] = -1;
-                this._tot[this.NodeCommunity[i]] += this.Network.Weights[i];
+                this._tot[i] += this.Network.Weights[i];
             }
         }
 
@@ -547,29 +546,40 @@ namespace CommunityGrapher
             this._tot[comm] += this.Network.Weights[node];
             this._inm[comm] += 2 * weight + this.GetSelfLoops(node);
             this.Communities[comm].Add(node);
-            this.NodeCommunity[node] = comm;
+            this.NodesCommunities[node] = comm;
         }
 
         /// <summary>
-        ///     Compute the gain of modularity if a node with the given weight was inserted in a community.
+        ///     Compute the gain of modularity if a node with the given weight was inserted in the given community.
         /// </summary>
         /// <param name="comm">The community in which to insert the node.</param>
         /// <param name="commWeight">The weight of the community.</param>
         /// <param name="nodeWeight">The weight of the node in the community.</param>
-        /// <returns></returns>
+        /// <returns>
+        ///     The gain of modularity if a node with the given weight was inserted in the given community. A negative weight
+        ///     indicates loss of modularity.
+        /// </returns>
         private double ModularityGain(uint comm, double commWeight, double nodeWeight)
         {
             //The formula is:
-            //     [(In(comm)+2d(node,comm))/2m - ((tot(comm)+deg(node))/2m)^2]-
-            //     [In(comm)/2m - (tot(comm)/2m)^2 - (deg(node)/2m)^2]
-            //     where In(comm)    = number of half-links strictly inside comm
-            //     Tot(comm)   = number of half-links inside or outside comm (sum(degrees))
-            //     d(node,com) = number of links from node to comm
-            //     deg(node)   = node degree
-            //     m           = number of links
-            var commTot = this._tot[comm];
-            var totWeight = this.Network.TotalWeight;
-            return commWeight - commTot * nodeWeight / totWeight;
+            //     ΔQ = [((sumIn + kiIn) / 2m) - ((sumTot + ki) / 2m)^2] -
+            //          [(sumIn / 2m) - (sumTot / 2m)^2 - (ki / 2m)^2]
+            //     where:
+            //     sumIn       = sum of the weights of the links inside comm
+            //     sumTot      = sum of the weights of the links incident to nodes in comm
+            //     ki          = sum of the weights of the links incident to the node
+            //     kiIn        = sum of the weights of the links from the node to nodes in comm
+            //     m           = sum of the weights of all the links in the network
+            var m2 = 2 * this.Network.TotalWeight;
+            if (Math.Abs(m2) < double.Epsilon) return 0;
+
+            var ki = nodeWeight;
+            var kiIn = commWeight;
+            var sumTot = this._tot[comm];
+            var sumIn = this._inm[comm];
+
+            return (sumIn + kiIn) / m2 - Math.Pow((sumTot + ki) / m2, 2) -
+                   (sumIn / m2 - Math.Pow(sumTot / m2, 2) - Math.Pow(ki / m2, 2));
         }
 
         /// <summary>
@@ -583,7 +593,7 @@ namespace CommunityGrapher
             this._tot[comm] -= this.Network.Weights[node];
             this._inm[comm] -= 2 * weight + this.GetSelfLoops(node);
             this.Communities[comm].Remove(node);
-            this.NodeCommunity[node] = uint.MaxValue;
+            this.NodesCommunities[node] = uint.MaxValue;
         }
 
         /// <summary>
@@ -594,7 +604,7 @@ namespace CommunityGrapher
         {
             var renumber = new uint[this.Size];
             for (var node = 0; node < this.Size; node++)
-                renumber[this.NodeCommunity[node]]++;
+                renumber[this.NodesCommunities[node]]++;
 
             final = 0;
             for (var i = 0u; i < this.Size; i++)
@@ -621,7 +631,7 @@ namespace CommunityGrapher
             for (var i = 0u; i < this.Size; i++)
             {
                 this._neighCommWeight[i] = -1;
-                this._tot[this.NodeCommunity[i]] += this.Network.Weights[i];
+                this._tot[this.NodesCommunities[i]] += this.Network.Weights[i];
             }
         }
 

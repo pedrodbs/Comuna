@@ -9,9 +9,6 @@
     <Reference Include="QuickGraph">
       <HintPath>..\ext\QuickGraph.dll</HintPath>
     </Reference>
-    <Reference Include="QuickGraph.Graphviz">
-      <HintPath>..\ext\QuickGraph.Graphviz.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>

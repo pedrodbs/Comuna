@@ -1,5 +1,5 @@
-// ------------------------------------------
-// <copyright file="Graph.cs" company="Pedro Sequeira">
+﻿// ------------------------------------------
+// <copyright file="Program.cs" company="Pedro Sequeira">
 // 
 //     Copyright (c) 2018 Pedro Sequeira
 // 
@@ -18,37 +18,32 @@
 // 
 // </copyright>
 // <summary>
-//    Project: CommunityGrapher.D3
+//    Project: CommunitiesTester
 //    Last updated: 05/26/2018
 //    Author: Pedro Sequeira
 //    E-mail: pedrodbs@gmail.com
 // </summary>
 // ------------------------------------------
 
-using System.Collections.Generic;
-using Newtonsoft.Json;
+using System;
+using System.Windows.Forms;
 
-namespace CommunityGrapher.D3
+namespace CommunitiesTester
 {
-    /// <summary>
-    ///     Represents a graph structure used to save a <see cref="Network" /> to a D3 json file.
-    /// </summary>
-    [JsonObject]
-    public class Graph
+    internal static class Program
     {
-        #region Properties & Indexers
+        #region Private & Protected Methods
 
         /// <summary>
-        ///     Gets or sets the list of <see cref="Link" /> in this graph.
+        ///     The main entry point for the application.
         /// </summary>
-        [JsonProperty(Constants.LINKS_PROP)]
-        public List<Link> Links { get; private set; } = new List<Link>();
-
-        /// <summary>
-        ///     Gets or sets the list of <see cref="Node" /> in this graph.
-        /// </summary>
-        [JsonProperty(Constants.NODES_PROP)]
-        public List<Node> Nodes { get; private set; } = new List<Node>();
+        [STAThread]
+        private static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new MainForm());
+        }
 
         #endregion
     }

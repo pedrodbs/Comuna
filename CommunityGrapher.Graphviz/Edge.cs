@@ -1,5 +1,5 @@
 // ------------------------------------------
-// <copyright file="Connection.cs" company="Pedro Sequeira">
+// <copyright file="Edge.cs" company="Pedro Sequeira">
 // 
 //     Copyright (c) 2018 Pedro Sequeira
 // 
@@ -18,29 +18,22 @@
 // 
 // </copyright>
 // <summary>
-//    Project: CommunityGrapher
-//    Last updated: 06/14/2018
+//    Project: CommunityGrapher.Graphviz
+//    Last updated: 06/15/2018
 //    Author: Pedro Sequeira
 //    E-mail: pedrodbs@gmail.com
 // </summary>
 // ------------------------------------------
 
-using System;
 using QuickGraph;
 
-namespace CommunityGrapher
+namespace CommunityGrapher.Graphviz
 {
     /// <summary>
-    ///     Represents an undirected connection in an <see cref="Network" /> with an associated weight.
+    ///     Represents an edge structure used to save a connection of a <see cref="Network" /> to a Graphviz dot file.
     /// </summary>
-    public class Connection : IUndirectedEdge<uint>, IEquatable<Connection>
+    public class Edge : IUndirectedEdge<Node>
     {
-        #region Static Fields & Constants
-
-        private const double COMPARE_EPSILON = 1E-6;
-
-        #endregion
-
         #region Fields
 
         private readonly int _hashCode;
@@ -50,13 +43,13 @@ namespace CommunityGrapher
         #region Constructors
 
         /// <summary>
-        ///     Creates a new <see cref="Connection" /> linking the given source and target with the
+        ///     Creates a new <see cref="Edge" /> linking the given source and target with the
         ///     associated weight.
         /// </summary>
         /// <param name="source">The source of the connection.</param>
         /// <param name="target">The target of the connection.</param>
         /// <param name="weight">The weight associated with the connection.</param>
-        public Connection(uint source, uint target, double weight = 1)
+        public Edge(Node source, Node target, double weight = 1)
         {
             this.Source = source;
             this.Target = target;
@@ -69,6 +62,11 @@ namespace CommunityGrapher
         #region Properties & Indexers
 
         /// <summary>
+        ///     Gets or sets a value indicating whether to show the edge's label.
+        /// </summary>
+        public bool ShowLabel { get; set; }
+
+        /// <summary>
         ///     Gets the weight associated with this connection.
         /// </summary>
         public double Weight { get; }
@@ -76,12 +74,12 @@ namespace CommunityGrapher
         /// <summary>
         ///     Gets the source node.
         /// </summary>
-        public uint Source { get; }
+        public Node Source { get; }
 
         /// <summary>
         ///     Gets the target node.
         /// </summary>
-        public uint Target { get; }
+        public Node Target { get; }
 
         #endregion
 
@@ -92,7 +90,7 @@ namespace CommunityGrapher
         {
             return !(obj is null) &&
                    (ReferenceEquals(this, obj) || obj.GetType() == this.GetType() &&
-                    this.Equals((Connection) obj));
+                    this.Equals((Edge) obj));
         }
 
         /// <inheritdoc />
@@ -111,7 +109,7 @@ namespace CommunityGrapher
         /// <param name="left">The first connection.</param>
         /// <param name="right">The second connection.</param>
         /// <returns>A <see cref="bool" /> indicating whether the two connections are equal.</returns>
-        public static bool operator ==(Connection left, Connection right) => Equals(left, right);
+        public static bool operator ==(Edge left, Edge right) => Equals(left, right);
 
         /// <summary>
         ///     Tests whether the two connections are different (not equal).
@@ -119,19 +117,18 @@ namespace CommunityGrapher
         /// <param name="left">The first connection.</param>
         /// <param name="right">The second connection.</param>
         /// <returns>A <see cref="bool" /> indicating whether the two connections are different.</returns>
-        public static bool operator !=(Connection left, Connection right) => !Equals(left, right);
+        public static bool operator !=(Edge left, Edge right) => !Equals(left, right);
 
         /// <summary>
         ///     Tests whether this connection is equal to another one.
         /// </summary>
         /// <param name="other">The other connection.</param>
         /// <returns>A <see cref="bool" /> indicating whether this connection is equal to the other one.</returns>
-        public bool Equals(Connection other)
+        public bool Equals(Edge other)
         {
             return !(other is null) &&
                    (ReferenceEquals(this, other) ||
                     this._hashCode == other._hashCode &&
-                    Math.Abs(this.Weight - other.Weight) < COMPARE_EPSILON &&
                     (Equals(this.Source, other.Source) && Equals(this.Target, other.Target) ||
                      Equals(this.Source, other.Target) && Equals(this.Target, other.Source)));
         }
@@ -144,12 +141,9 @@ namespace CommunityGrapher
         {
             unchecked
             {
-                var hashCode = this.Weight.GetHashCode();
-                var source = this.Source < this.Target ? this.Source : this.Target;
-                var target = this.Source < this.Target ? this.Target : this.Source;
-                hashCode = (hashCode * 397) ^ source.GetHashCode();
-                hashCode = (hashCode * 397) ^ target.GetHashCode();
-                return hashCode;
+                var source = this.Source.IdNum < this.Target.IdNum ? this.Source : this.Target;
+                var target = this.Source.IdNum < this.Target.IdNum ? this.Target : this.Source;
+                return (source.GetHashCode() * 397) ^ target.GetHashCode();
             }
         }
 

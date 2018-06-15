@@ -1,5 +1,5 @@
-// ------------------------------------------
-// <copyright file="Graph.cs" company="Pedro Sequeira">
+﻿// ------------------------------------------
+// <copyright file="Constants.cs" company="Pedro Sequeira">
 // 
 //     Copyright (c) 2018 Pedro Sequeira
 // 
@@ -25,30 +25,24 @@
 // </summary>
 // ------------------------------------------
 
-using System.Collections.Generic;
-using Newtonsoft.Json;
-
 namespace CommunityGrapher.D3
 {
     /// <summary>
-    ///     Represents a graph structure used to save a <see cref="Network" /> to a D3 json file.
+    ///     Contains the ids of the D3 json file attributes.
     /// </summary>
-    [JsonObject]
-    public class Graph
+    internal static class Constants
     {
-        #region Properties & Indexers
+        #region Static Fields & Constants
 
-        /// <summary>
-        ///     Gets or sets the list of <see cref="Link" /> in this graph.
-        /// </summary>
-        [JsonProperty(Constants.LINKS_PROP)]
-        public List<Link> Links { get; private set; } = new List<Link>();
-
-        /// <summary>
-        ///     Gets or sets the list of <see cref="Node" /> in this graph.
-        /// </summary>
-        [JsonProperty(Constants.NODES_PROP)]
-        public List<Node> Nodes { get; private set; } = new List<Node>();
+        public const string NUM_TIME_STEPS_PROP = "t";
+        public const string GRAPH_LIST_PROP = "g";
+        public const string COMMUNITY_PROP = "c";
+        public const string ID_PROP = "i";
+        public const string SOURCE_PROP = "s";
+        public const string TARGET_PROP = "t";
+        public const string VALUE_PROP = "v";
+        public const string NODES_PROP = "n";
+        public const string LINKS_PROP = "l";
 
         #endregion
     }

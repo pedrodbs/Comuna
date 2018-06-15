@@ -19,7 +19,7 @@
 // </copyright>
 // <summary>
 //    Project: CommunityGrapher.D3
-//    Last updated: 05/25/2018
+//    Last updated: 05/26/2018
 //    Author: Pedro Sequeira
 //    E-mail: pedrodbs@gmail.com
 // </summary>
@@ -33,6 +33,7 @@ namespace CommunityGrapher.D3
     /// <summary>
     ///     Represents a link structure used to save a <see cref="Connection" /> to a D3 json file.
     /// </summary>
+    [JsonObject]
     public class Link
     {
         #region Fields
@@ -46,19 +47,19 @@ namespace CommunityGrapher.D3
         /// <summary>
         ///     Gets or sets the ID of the source node of this link.
         /// </summary>
-        [JsonProperty("s")]
+        [JsonProperty(Constants.SOURCE_PROP)]
         public uint Source { get; set; }
 
         /// <summary>
         ///     Gets or sets the ID of the target node of this link.
         /// </summary>
-        [JsonProperty("t")]
+        [JsonProperty(Constants.TARGET_PROP)]
         public uint Target { get; set; }
 
         /// <summary>
         ///     Gets or sets the value / weight associated with this link.
         /// </summary>
-        [JsonProperty("v")]
+        [JsonProperty(Constants.VALUE_PROP)]
         public double Value { get => this._v; set => this._v = Math.Round(value, 2); }
 
         #endregion

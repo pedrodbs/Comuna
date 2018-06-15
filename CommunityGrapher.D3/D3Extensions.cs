@@ -19,7 +19,7 @@
 // </copyright>
 // <summary>
 //    Project: CommunityGrapher.D3
-//    Last updated: 05/25/2018
+//    Last updated: 05/26/2018
 //    Author: Pedro Sequeira
 //    E-mail: pedrodbs@gmail.com
 // </summary>
@@ -43,50 +43,41 @@ namespace CommunityGrapher.D3
         /// </summary>
         /// <param name="communityAlg">The network to be saved to a graph file.</param>
         /// <param name="filePath">The path to the file in which to save the network graph.</param>
-        /// <param name="prevCommunities">An optional argument containing the communities of each node in a previous iteration.</param>
         /// <param name="formatting">The Json file formatting.</param>
-        public static void SaveD3GraphFile(
-            this CommunityAlgorithm communityAlg, string filePath,
-            uint[] prevCommunities = null, Formatting formatting = Formatting.None)
+        public static void ToD3GraphFile(
+            this CommunityAlgorithm communityAlg, string filePath, Formatting formatting = Formatting.None)
         {
-            // creates graph
-            var graph = GetGraph(communityAlg, prevCommunities);
-
-            // todo change this to support evolution of graphs (needs structure)
+            // creates writers
             using (var fs = new FileStream(filePath, FileMode.Create))
             using (var sw = new StreamWriter(fs, Encoding.UTF8))
             using (var tw = new JsonTextWriter(sw) {Formatting = formatting})
-                new JsonSerializer().Serialize(tw, graph);
-        }
-
-        #endregion
-
-        #region Private & Protected Methods
-
-        private static Graph GetGraph(CommunityAlgorithm communityAlg, uint[] prevCommunities)
-        {
-            var graph = new Graph();
-            var network = communityAlg.Network;
-
-            //adds links from community graph
-            foreach (var edge in network.Edges)
-                graph.Links.Add(new Link {Source = edge.Source, Target = edge.Target, Value = edge.Weight});
-
-            //checks updated community for each node and adds corresponding graph nodes
-            for (var i = 0u; i < network.VertexCount; i++)
             {
-                var community = communityAlg.NodeCommunity[i];
-                if (prevCommunities == null || !prevCommunities[i].Equals(community))
-                    graph.Nodes.Add(new Node(i)
-                                    {
-                                        Community = community,
+                tw.WriteStartObject();
 
-                                        //todo remove this
-                                        HexColor = string.Empty
-                                    });
+                // writes num time-steps
+                tw.WritePropertyName(Constants.NUM_TIME_STEPS_PROP);
+                tw.WriteValue(1);
+
+                // opens graphs
+                tw.WritePropertyName(Constants.GRAPH_LIST_PROP);
+                tw.WriteStartArray();
+
+                // creates a new graph structure with the network and communities info 
+                var graph = new Graph();
+
+                // adds links from network
+                foreach (var edge in communityAlg.Network.Edges)
+                    graph.Links.Add(new Link {Source = edge.Source, Target = edge.Target, Value = edge.Weight});
+
+                // adds nodes with community info
+                for (var i = 0u; i < communityAlg.Network.VertexCount; i++)
+                    graph.Nodes.Add(new Node(i, communityAlg.NodesCommunities[i]));
+
+                // writes graph and closes json
+                tw.WriteRawValue(JsonConvert.SerializeObject(graph, formatting));
+                tw.WriteEndArray();
+                tw.WriteEndObject();
             }
-
-            return graph;
         }
 
         #endregion
