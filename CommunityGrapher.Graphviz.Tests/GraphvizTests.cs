@@ -112,7 +112,6 @@ namespace CommunityGrapher.Graphviz.Tests
             // creates algorithm and updates communities
             var communityAlg = new CommunityAlgorithm(network, -1, 0.000001);
             communityAlg.Update();
-            communityAlg.RenumberCommunities();
             communityAlg.DisplayCommunities();
 
             var fullPath = Path.GetFullPath(".");

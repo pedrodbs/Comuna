@@ -19,7 +19,7 @@
 // </copyright>
 // <summary>
 //    Project: CommunityGrapher
-//    Last updated: 06/07/2018
+//    Last updated: 06/18/2018
 //    Author: Pedro Sequeira
 //    E-mail: pedrodbs@gmail.com
 // </summary>
@@ -27,7 +27,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using QuickGraph;
 
 namespace CommunityGrapher
@@ -38,6 +40,12 @@ namespace CommunityGrapher
     /// </summary>
     public class Network : UndirectedGraph<uint, Connection>, IDisposable
     {
+        #region Static Fields & Constants
+
+        private const char CSV_SEP_CHAR = ',';
+
+        #endregion
+
         #region Fields
 
         private readonly Dictionary<uint, double> _weights = new Dictionary<uint, double>();
@@ -67,6 +75,52 @@ namespace CommunityGrapher
         #endregion
 
         #region Public Methods
+
+        /// <summary>
+        ///     Creates a new <see cref="Network" /> by reading the edge information stored in the given CSV (comma-separated
+        ///     values) file.
+        ///     The format is 'source_node, target_node [, weight]'. If not provided, weight of the edge is considered to be 1.
+        /// </summary>
+        /// <param name="filePath">The path to the CSV file containing the network information.</param>
+        /// <param name="sepChar">The character used to separate each field in the file.</param>
+        /// <returns>A new network according to the information in the given file, or <c>null</c> if no information could be read.</returns>
+        public static Network LoadFromCsv(string filePath, char sepChar = CSV_SEP_CHAR)
+        {
+            // checks file
+            if (!File.Exists(filePath)) return null;
+
+            var separator = new[] {sepChar};
+
+            // reads network, one edge per line
+            var network = new Network();
+            using (var fs = new FileStream(filePath, FileMode.Open))
+            using (var sr = new StreamReader(fs, Encoding.UTF8))
+            {
+                string line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    // checks empty / incorrect line
+                    var fields = line.Split(separator, StringSplitOptions.RemoveEmptyEntries);
+                    if (fields.Length < 2) continue;
+
+                    // parses source, target and weight
+                    if (!uint.TryParse(fields[0], out var source)) continue;
+                    if (!uint.TryParse(fields[1], out var target)) continue;
+                    if (fields.Length < 3 || !double.TryParse(fields[2], out var weight)) weight = 1d;
+
+                    // checks vertexes
+                    if (!network.ContainsVertex(source))
+                        network.AddVertex(source);
+                    if (!network.ContainsVertex(target))
+                        network.AddVertex(target);
+
+                    // adds edge
+                    network.AddEdge(new Connection(source, target, weight));
+                }
+            }
+
+            return network;
+        }
 
         /// <summary>
         ///     Adds a new <see cref="Connection" /> to the network.
@@ -125,7 +179,7 @@ namespace CommunityGrapher
         /// </summary>
         /// <param name="connection">The connection to be removed.</param>
         /// <returns>A <see cref="bool" /> indicating whether the connection was successfully removed.</returns>
-        public bool RemoveEdge(Connection connection)
+        public new bool RemoveEdge(Connection connection)
         {
             if (!base.RemoveEdge(connection)) return false;
 
@@ -148,6 +202,21 @@ namespace CommunityGrapher
                 this._weights.Remove(node);
 
             return base.RemoveVertex(node);
+        }
+
+        /// <summary>
+        ///     Writes the network's edge information to a given CSV (comma-separated values) file.
+        ///     The format is 'source_node, target_node, weight]'.
+        /// </summary>
+        /// <param name="filePath">The path to the CSV file in which to store the network information.</param>
+        /// <param name="sepChar">The character used to separate each field in the file.</param>
+        public void SaveToCsv(string filePath, char sepChar = CSV_SEP_CHAR)
+        {
+            // writes network, one edge per line
+            using (var fs = new FileStream(filePath, FileMode.Create))
+            using (var sw = new StreamWriter(fs, Encoding.UTF8))
+                foreach (var edge in this.Edges)
+                    sw.WriteLine($"{edge.Source}{sepChar}{edge.Target}{sepChar}{edge.Weight}");
         }
 
         public void Dispose() => this.Clear();

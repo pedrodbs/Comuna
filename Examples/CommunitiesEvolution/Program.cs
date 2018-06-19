@@ -19,7 +19,7 @@
 // </copyright>
 // <summary>
 //    Project: CommunitiesEvolution
-//    Last updated: 05/26/2018
+//    Last updated: 06/18/2018
 //    Author: Pedro Sequeira
 //    E-mail: pedrodbs@gmail.com
 // </summary>
@@ -98,7 +98,6 @@ namespace CommunitiesEvolution
         private static void Update(CommunityAlgorithm communityAlg, CommunityTracker tracker)
         {
             communityAlg.Update();
-            communityAlg.RenumberCommunities();
             communityAlg.DisplayNodesCommunities();
             Console.WriteLine("Modularity: {0}", communityAlg.GetModularity());
 

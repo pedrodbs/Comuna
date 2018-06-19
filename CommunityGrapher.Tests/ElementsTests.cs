@@ -19,13 +19,14 @@
 // </copyright>
 // <summary>
 //    Project: CommunityGrapher.Tests
-//    Last updated: 06/15/2018
+//    Last updated: 06/18/2018
 //    Author: Pedro Sequeira
 //    E-mail: pedrodbs@gmail.com
 // </summary>
 // ------------------------------------------
 
 using System;
+using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CommunityGrapher.Tests
@@ -33,6 +34,12 @@ namespace CommunityGrapher.Tests
     [TestClass]
     public class ElementsTests
     {
+        #region Static Fields & Constants
+
+        private const string CSV_FILE = "network.csv";
+
+        #endregion
+
         #region Public Methods
 
         [TestMethod]
@@ -92,6 +99,39 @@ namespace CommunityGrapher.Tests
             Assert.AreEqual(conn1, conn2, $"Connection {conn1} should be equal to connection {conn2}.");
             Assert.IsTrue(conn1 == conn2, $"Connection {conn1} should be equal to connection {conn2}.");
             Assert.IsFalse(conn1 != conn2, $"Connection {conn1} should be equal to connection {conn2}.");
+        }
+
+        [TestMethod]
+        public void LoadCsvFileTest()
+        {
+            // creates and saves network
+            const int num = 10;
+            var network = new Network();
+            for (var i = 0u; i < num; i++)
+                network.AddVertex(i);
+            for (var i = 0u; i < num; i++)
+            for (var j = i + 1; j < num; j++)
+                network.AddEdge(new Connection(i, j));
+
+            // save file
+            var fullPath = Path.Combine(Path.GetFullPath("."), CSV_FILE);
+
+            // loads network from file
+            if (!File.Exists(fullPath)) return;
+            network = Network.LoadFromCsv(fullPath);
+            Assert.IsNotNull(network, "Network should not be null. Error occurred while loading file.");
+            Console.WriteLine(network);
+
+            // checks vertexes and edges
+            Assert.AreEqual(num, network.VertexCount, $"Network should have {num} nodes.");
+            for (var i = 0u; i < num; i++)
+            for (var j = i + 1; j < num; j++)
+            {
+                Assert.IsTrue(network.TryGetEdge(i, j, out var connection), $"Network should have connection {i}-{j}.");
+                Console.WriteLine(connection);
+                Assert.AreEqual(1d, connection.Weight, double.Epsilon,
+                    "Network connections should have a weight of 1.");
+            }
         }
 
         [TestMethod]
@@ -193,6 +233,32 @@ namespace CommunityGrapher.Tests
             Console.WriteLine(network);
             Assert.AreEqual(0, network.EdgeCount, "Network should not contain edges.");
             Assert.AreEqual(0, network.TotalWeight, double.Epsilon, "Network total weight should be 0.");
+        }
+
+        [TestMethod]
+        public void SaveCsvFileTest()
+        {
+            // creates network nodes
+            const int num = 10;
+            var network = new Network();
+            for (var i = 0u; i < num; i++)
+                network.AddVertex(i);
+
+            // creates edges (fully-connected)
+            for (var i = 0u; i < num; i++)
+            for (var j = i + 1; j < num; j++)
+                network.AddEdge(new Connection(i, j));
+            Console.WriteLine(network);
+
+            // save file
+            var fullPath = Path.Combine(Path.GetFullPath("."), CSV_FILE);
+            File.Delete(fullPath);
+            network.SaveToCsv(fullPath);
+            Assert.IsTrue(File.Exists(fullPath), $"CSV file should exist in {fullPath}.");
+            Assert.IsTrue(new FileInfo(fullPath).Length > 0, "CSV file size should be > 0 bytes.");
+#if !DEBUG
+            File.Delete(fullPath);
+#endif
         }
 
         #endregion

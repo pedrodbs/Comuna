@@ -19,7 +19,7 @@
 // </copyright>
 // <summary>
 //    Project: CommunityGrapher.Tests
-//    Last updated: 06/15/2018
+//    Last updated: 06/18/2018
 //    Author: Pedro Sequeira
 //    E-mail: pedrodbs@gmail.com
 // </summary>
@@ -158,7 +158,6 @@ namespace CommunityGrapher.Tests
             // creates and updates community algorithm
             var communityAlg = new CommunityAlgorithm(network, -1, 0);
             communityAlg.Update();
-            communityAlg.RenumberCommunities();
             communityAlg.DisplayCommunities();
 
             //checks communities
@@ -251,7 +250,7 @@ namespace CommunityGrapher.Tests
 
             // creates and updates community algorithm
             var commAlgorithm = new CommunityAlgorithm(network);
-            commAlgorithm.Update();
+            commAlgorithm.Update(false);
 
             // copies communities
             Console.WriteLine("Before renumbering:");

@@ -19,7 +19,7 @@
 // </copyright>
 // <summary>
 //    Project: CommunityGrapher.Graphviz
-//    Last updated: 06/14/2018
+//    Last updated: 06/18/2018
 //    Author: Pedro Sequeira
 //    E-mail: pedrodbs@gmail.com
 // </summary>
@@ -168,7 +168,8 @@ namespace CommunityGrapher.Graphviz
                 var processInfo = new ProcessStartInfo("dot", args)
                                   {
                                       UseShellExecute = false,
-                                      RedirectStandardOutput = true
+                                      RedirectStandardOutput = true,
+                                      CreateNoWindow = true
                                   };
                 var process = Process.Start(processInfo);
                 process?.WaitForExit(this._timeout);

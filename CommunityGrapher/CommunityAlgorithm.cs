@@ -19,7 +19,7 @@
 // </copyright>
 // <summary>
 //    Project: CommunityGrapher
-//    Last updated: 06/15/2018
+//    Last updated: 06/18/2018
 //    Author: Pedro Sequeira
 //    E-mail: pedrodbs@gmail.com
 // </summary>
@@ -45,12 +45,6 @@ namespace CommunityGrapher
     /// </remarks>
     public class CommunityAlgorithm : IDisposable
     {
-        #region Static Fields & Constants
-
-        private static readonly Random Random = new Random();
-
-        #endregion
-
         #region Fields
 
         /// <summary>
@@ -352,8 +346,12 @@ namespace CommunityGrapher
         ///     Computes communities in the graph iteratively until there are changes in any node's community or the changes in
         ///     modularity are large enough.
         /// </summary>
+        /// <param name="renumberCommunities">
+        ///     Whether to renumber communities after the update by calling
+        ///     <see cref="RenumberCommunities" />.
+        /// </param>
         /// <returns><c>true</c>, if some node changed community, <c>false</c> otherwise.</returns>
-        public bool Update()
+        public bool Update(bool renumberCommunities = true)
         {
             this.Reset();
 
@@ -421,6 +419,10 @@ namespace CommunityGrapher
                 improvement |= numMoves > 0;
             } while (numMoves > 0 && newMod - curMod > this.MinModularity &&
                      (this.NumPasses == -1 || numPassDone <= this.NumPasses));
+
+            //renumbers communities if asked
+            if (renumberCommunities)
+                this.RenumberCommunities();
 
             return improvement;
         }
