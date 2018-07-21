@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <StartupObject>CommunitiesEvolution.Program</StartupObject>
+    <Platforms>AnyCPU;x64;x86</Platforms>
+    <PackageId>Comuna.Graphviz</PackageId>
+    <Copyright>Copyright © Pedro Sequeira 2018</Copyright>
+    <Product>Comuna.NET</Product>
+    <Authors>Pedro Sequeira</Authors>
+    <PackageLicenseUrl>https://raw.github.com/pedrodbs/Comuna/master/LICENSE.md</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/pedrodbs/Comuna</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/pedrodbs/Comuna</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <FileVersion>1.1.0.0</FileVersion>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <Description>Example application using Comuna.NET library, a community analysis, tracking and graphing library for social networks written in C#</Description>
+    <PackageTags>community analysis, community tracking, social networks</PackageTags>
+    <Version>1.1.0</Version>
+    <PackageIconUrl>https://raw.github.com/pedrodbs/Aglomera/master/img/comuna.ico</PackageIconUrl>
+    <ApplicationIcon>comuna.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Comuna.D3\Comuna.D3.csproj" />
+    <ProjectReference Include="..\..\Comuna\Comuna.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="QuickGraph">
+      <HintPath>..\..\..\ext\QuickGraph.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

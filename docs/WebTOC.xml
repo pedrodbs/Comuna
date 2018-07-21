@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpTOC>
+
+  <HelpTOCNode Title="Comuna.NET" Url="html/e8ac8daa-3957-4d6a-b330-fd86661bc52a.htm" />
+  <HelpTOCNode Id="0f299313-8c4d-4aa3-8f21-2979bdac4009" Title="Comuna" Url="html/N_Comuna.htm">
+    <HelpTOCNode Id="5a42d85f-a320-4945-9e72-9089e49b4e4a" Title="CommunityAlgorithm Class" Url="html/T_Comuna_CommunityAlgorithm.htm">
+      <HelpTOCNode Title="CommunityAlgorithm Constructor " Url="html/M_Comuna_CommunityAlgorithm__ctor.htm" />
+      <HelpTOCNode Id="15345493-59b8-40b8-ae92-f34726ec574a" Title="CommunityAlgorithm Properties" Url="html/Properties_T_Comuna_CommunityAlgorithm.htm">
+        <HelpTOCNode Title="Communities Property " Url="html/P_Comuna_CommunityAlgorithm_Communities.htm" />
+        <HelpTOCNode Title="MinModularity Property " Url="html/P_Comuna_CommunityAlgorithm_MinModularity.htm" />
+        <HelpTOCNode Title="Network Property " Url="html/P_Comuna_CommunityAlgorithm_Network.htm" />
+        <HelpTOCNode Title="NodesCommunities Property " Url="html/P_Comuna_CommunityAlgorithm_NodesCommunities.htm" />
+        <HelpTOCNode Title="NumPasses Property " Url="html/P_Comuna_CommunityAlgorithm_NumPasses.htm" />
+        <HelpTOCNode Title="Size Property " Url="html/P_Comuna_CommunityAlgorithm_Size.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="2b01e895-5164-40e5-a926-ba196dbf90e5" Title="CommunityAlgorithm Methods" Url="html/Methods_T_Comuna_CommunityAlgorithm.htm">
+        <HelpTOCNode Title="DisplayCommunities Method " Url="html/M_Comuna_CommunityAlgorithm_DisplayCommunities.htm" />
+        <HelpTOCNode Title="DisplayCommunityGraph Method " Url="html/M_Comuna_CommunityAlgorithm_DisplayCommunityGraph.htm" />
+        <HelpTOCNode Title="DisplayNodesCommunities Method " Url="html/M_Comuna_CommunityAlgorithm_DisplayNodesCommunities.htm" />
+        <HelpTOCNode Title="DisplayPartition Method " Url="html/M_Comuna_CommunityAlgorithm_DisplayPartition.htm" />
+        <HelpTOCNode Title="Dispose Method " Url="html/M_Comuna_CommunityAlgorithm_Dispose.htm" />
+        <HelpTOCNode Title="GetCommunityNetwork Method " Url="html/M_Comuna_CommunityAlgorithm_GetCommunityNetwork.htm" />
+        <HelpTOCNode Title="GetModularity Method " Url="html/M_Comuna_CommunityAlgorithm_GetModularity.htm" />
+        <HelpTOCNode Title="GetNumberCommunities Method " Url="html/M_Comuna_CommunityAlgorithm_GetNumberCommunities.htm" />
+        <HelpTOCNode Title="LoadFromFile Method " Url="html/M_Comuna_CommunityAlgorithm_LoadFromFile.htm" />
+        <HelpTOCNode Title="RenumberCommunities Method " Url="html/M_Comuna_CommunityAlgorithm_RenumberCommunities.htm" />
+        <HelpTOCNode Title="Update Method " Url="html/M_Comuna_CommunityAlgorithm_Update.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="e3f16395-cdbd-44c2-a5dc-b0db0d177c06" Title="Connection Class" Url="html/T_Comuna_Connection.htm">
+      <HelpTOCNode Title="Connection Constructor " Url="html/M_Comuna_Connection__ctor.htm" />
+      <HelpTOCNode Id="cd51c90b-bc6d-4965-91ea-0b396b7b0c21" Title="Connection Properties" Url="html/Properties_T_Comuna_Connection.htm">
+        <HelpTOCNode Title="Source Property " Url="html/P_Comuna_Connection_Source.htm" />
+        <HelpTOCNode Title="Target Property " Url="html/P_Comuna_Connection_Target.htm" />
+        <HelpTOCNode Title="Weight Property " Url="html/P_Comuna_Connection_Weight.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="c521ffbb-f885-436e-ac46-86ba2e9938f5" Title="Connection Methods" Url="html/Methods_T_Comuna_Connection.htm">
+        <HelpTOCNode Id="2bd87141-331b-4ca2-8c98-5c7909ca7bad" Title="Equals Method " Url="html/Overload_Comuna_Connection_Equals.htm">
+          <HelpTOCNode Title="Equals Method (Object)" Url="html/M_Comuna_Connection_Equals_1.htm" />
+          <HelpTOCNode Title="Equals Method (Connection)" Url="html/M_Comuna_Connection_Equals.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="GetHashCode Method " Url="html/M_Comuna_Connection_GetHashCode.htm" />
+        <HelpTOCNode Title="ToString Method " Url="html/M_Comuna_Connection_ToString.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="d4aeebe0-1b71-4f4f-bcf2-38b10d9da051" Title="Connection Operators" Url="html/Operators_T_Comuna_Connection.htm">
+        <HelpTOCNode Title="Equality Operator " Url="html/M_Comuna_Connection_op_Equality.htm" />
+        <HelpTOCNode Title="Inequality Operator " Url="html/M_Comuna_Connection_op_Inequality.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="4fd9e36e-2c39-4437-8d88-3315e409f2d9" Title="Network Class" Url="html/T_Comuna_Network.htm">
+      <HelpTOCNode Title="Network Constructor " Url="html/M_Comuna_Network__ctor.htm" />
+      <HelpTOCNode Id="ee0560b0-2ed4-4f0d-9540-6515f9cd1b79" Title="Network Properties" Url="html/Properties_T_Comuna_Network.htm">
+        <HelpTOCNode Title="TotalWeight Property " Url="html/P_Comuna_Network_TotalWeight.htm" />
+        <HelpTOCNode Title="Weights Property " Url="html/P_Comuna_Network_Weights.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="b9a544fd-8148-4c89-882e-6807b704ce60" Title="Network Methods" Url="html/Methods_T_Comuna_Network.htm">
+        <HelpTOCNode Title="AddEdge Method " Url="html/M_Comuna_Network_AddEdge.htm" />
+        <HelpTOCNode Title="AddVertex Method " Url="html/M_Comuna_Network_AddVertex.htm" />
+        <HelpTOCNode Title="Clear Method " Url="html/M_Comuna_Network_Clear.htm" />
+        <HelpTOCNode Title="ClearConnections Method " Url="html/M_Comuna_Network_ClearConnections.htm" />
+        <HelpTOCNode Title="ClearNodes Method " Url="html/M_Comuna_Network_ClearNodes.htm" />
+        <HelpTOCNode Title="Dispose Method " Url="html/M_Comuna_Network_Dispose.htm" />
+        <HelpTOCNode Title="LoadFromCsv Method " Url="html/M_Comuna_Network_LoadFromCsv.htm" />
+        <HelpTOCNode Title="RemoveEdge Method " Url="html/M_Comuna_Network_RemoveEdge.htm" />
+        <HelpTOCNode Title="RemoveVertex Method " Url="html/M_Comuna_Network_RemoveVertex.htm" />
+        <HelpTOCNode Title="SaveToCsv Method " Url="html/M_Comuna_Network_SaveToCsv.htm" />
+        <HelpTOCNode Title="ToString Method " Url="html/M_Comuna_Network_ToString.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="Network Events" Url="html/Events_T_Comuna_Network.htm" />
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="8c1e418d-f9dd-45b4-b644-929ccb81811d" Title="Comuna.D3" Url="html/N_Comuna_D3.htm">
+    <HelpTOCNode Id="084c5621-8d16-4c57-9912-cd62006557f8" Title="CommunityTracker Class" Url="html/T_Comuna_D3_CommunityTracker.htm">
+      <HelpTOCNode Title="CommunityTracker Constructor " Url="html/M_Comuna_D3_CommunityTracker__ctor.htm" />
+      <HelpTOCNode Id="2cbe816b-e0f0-4fde-9600-ee694c6d40cd" Title="CommunityTracker Properties" Url="html/Properties_T_Comuna_D3_CommunityTracker.htm">
+        <HelpTOCNode Title="CommunityAlg Property " Url="html/P_Comuna_D3_CommunityTracker_CommunityAlg.htm" />
+        <HelpTOCNode Title="FilePath Property " Url="html/P_Comuna_D3_CommunityTracker_FilePath.htm" />
+        <HelpTOCNode Title="Network Property " Url="html/P_Comuna_D3_CommunityTracker_Network.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="f8de72a3-39dc-4550-8ab5-954822dad439" Title="CommunityTracker Methods" Url="html/Methods_T_Comuna_D3_CommunityTracker.htm">
+        <HelpTOCNode Title="Dispose Method " Url="html/M_Comuna_D3_CommunityTracker_Dispose.htm" />
+        <HelpTOCNode Title="Update Method " Url="html/M_Comuna_D3_CommunityTracker_Update.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="03ca5938-e4cc-4896-8e59-7efadbe56fe3" Title="D3Extensions Class" Url="html/T_Comuna_D3_D3Extensions.htm">
+      <HelpTOCNode Id="32cfd8b0-1905-4bbd-9f55-bdfc576221f6" Title="D3Extensions Methods" Url="html/Methods_T_Comuna_D3_D3Extensions.htm">
+        <HelpTOCNode Title="ToD3GraphFile Method " Url="html/M_Comuna_D3_D3Extensions_ToD3GraphFile.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="bc36abec-38e2-47fb-bb51-3d663484e56f" Title="Graph Class" Url="html/T_Comuna_D3_Graph.htm">
+      <HelpTOCNode Title="Graph Constructor " Url="html/M_Comuna_D3_Graph__ctor.htm" />
+      <HelpTOCNode Id="52540e42-33f8-49f0-a687-0b660d3a36b8" Title="Graph Properties" Url="html/Properties_T_Comuna_D3_Graph.htm">
+        <HelpTOCNode Title="Links Property " Url="html/P_Comuna_D3_Graph_Links.htm" />
+        <HelpTOCNode Title="Nodes Property " Url="html/P_Comuna_D3_Graph_Nodes.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="Graph Methods" Url="html/Methods_T_Comuna_D3_Graph.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="1a8ec4c3-2636-4029-9329-fc23961672d1" Title="Link Class" Url="html/T_Comuna_D3_Link.htm">
+      <HelpTOCNode Title="Link Constructor " Url="html/M_Comuna_D3_Link__ctor.htm" />
+      <HelpTOCNode Id="cafe6178-6001-4a45-9989-c0919275865d" Title="Link Properties" Url="html/Properties_T_Comuna_D3_Link.htm">
+        <HelpTOCNode Title="Source Property " Url="html/P_Comuna_D3_Link_Source.htm" />
+        <HelpTOCNode Title="Target Property " Url="html/P_Comuna_D3_Link_Target.htm" />
+        <HelpTOCNode Title="Value Property " Url="html/P_Comuna_D3_Link_Value.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="Link Methods" Url="html/Methods_T_Comuna_D3_Link.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="034dbdac-8438-4397-8e1e-18dd6bdc70d2" Title="Node Class" Url="html/T_Comuna_D3_Node.htm">
+      <HelpTOCNode Title="Node Constructor " Url="html/M_Comuna_D3_Node__ctor.htm" />
+      <HelpTOCNode Id="b4da992e-ee7a-4911-8d43-9088d15de1a9" Title="Node Properties" Url="html/Properties_T_Comuna_D3_Node.htm">
+        <HelpTOCNode Title="Community Property " Url="html/P_Comuna_D3_Node_Community.htm" />
+        <HelpTOCNode Title="ID Property " Url="html/P_Comuna_D3_Node_ID.htm" />
+        <HelpTOCNode Title="IdNum Property " Url="html/P_Comuna_D3_Node_IdNum.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="Node Methods" Url="html/Methods_T_Comuna_D3_Node.htm" />
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="62c5998a-bd1b-425d-953f-bc47805d6629" Title="Comuna.Graphviz" Url="html/N_Comuna_Graphviz.htm">
+    <HelpTOCNode Id="be5f7a46-b07b-4f7e-b719-9aa17d609590" Title="Edge Class" Url="html/T_Comuna_Graphviz_Edge.htm">
+      <HelpTOCNode Title="Edge Constructor " Url="html/M_Comuna_Graphviz_Edge__ctor.htm" />
+      <HelpTOCNode Id="a600ddae-443c-49cd-8d6b-5878406df984" Title="Edge Properties" Url="html/Properties_T_Comuna_Graphviz_Edge.htm">
+        <HelpTOCNode Title="ShowLabel Property " Url="html/P_Comuna_Graphviz_Edge_ShowLabel.htm" />
+        <HelpTOCNode Title="Source Property " Url="html/P_Comuna_Graphviz_Edge_Source.htm" />
+        <HelpTOCNode Title="Target Property " Url="html/P_Comuna_Graphviz_Edge_Target.htm" />
+        <HelpTOCNode Title="Weight Property " Url="html/P_Comuna_Graphviz_Edge_Weight.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="1b2c837b-7716-4eb8-856e-d927915fe792" Title="Edge Methods" Url="html/Methods_T_Comuna_Graphviz_Edge.htm">
+        <HelpTOCNode Id="067d9f07-59b9-429a-8df6-b9db1bd4e0be" Title="Equals Method " Url="html/Overload_Comuna_Graphviz_Edge_Equals.htm">
+          <HelpTOCNode Title="Equals Method (Object)" Url="html/M_Comuna_Graphviz_Edge_Equals_1.htm" />
+          <HelpTOCNode Title="Equals Method (Edge)" Url="html/M_Comuna_Graphviz_Edge_Equals.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="GetHashCode Method " Url="html/M_Comuna_Graphviz_Edge_GetHashCode.htm" />
+        <HelpTOCNode Title="ToString Method " Url="html/M_Comuna_Graphviz_Edge_ToString.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="ec479df4-d2f4-419a-a329-aafffee6bab5" Title="Edge Operators" Url="html/Operators_T_Comuna_Graphviz_Edge.htm">
+        <HelpTOCNode Title="Equality Operator " Url="html/M_Comuna_Graphviz_Edge_op_Equality.htm" />
+        <HelpTOCNode Title="Inequality Operator " Url="html/M_Comuna_Graphviz_Edge_op_Inequality.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="53910323-f826-4eac-81af-8fe41b2d768a" Title="Extensions Class" Url="html/T_Comuna_Graphviz_Extensions.htm">
+      <HelpTOCNode Id="ed9f6760-75e4-4a9a-8922-d1437341ebd9" Title="Extensions Methods" Url="html/Methods_T_Comuna_Graphviz_Extensions.htm">
+        <HelpTOCNode Title="ToGraphvizFile Method " Url="html/M_Comuna_Graphviz_Extensions_ToGraphvizFile.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="1529efe2-c7a8-4a6b-9738-f3f858812aee" Title="Node Class" Url="html/T_Comuna_Graphviz_Node.htm">
+      <HelpTOCNode Title="Node Constructor " Url="html/M_Comuna_Graphviz_Node__ctor.htm" />
+      <HelpTOCNode Id="12e3e220-e609-4293-82e9-d1c926cd7c53" Title="Node Properties" Url="html/Properties_T_Comuna_Graphviz_Node.htm">
+        <HelpTOCNode Title="Color Property " Url="html/P_Comuna_Graphviz_Node_Color.htm" />
+        <HelpTOCNode Title="Community Property " Url="html/P_Comuna_Graphviz_Node_Community.htm" />
+        <HelpTOCNode Title="IdNum Property " Url="html/P_Comuna_Graphviz_Node_IdNum.htm" />
+        <HelpTOCNode Title="ShowLabel Property " Url="html/P_Comuna_Graphviz_Node_ShowLabel.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="ae7165d0-48c6-443a-ac99-d87b60f1ee1d" Title="Node Methods" Url="html/Methods_T_Comuna_Graphviz_Node.htm">
+        <HelpTOCNode Title="Equals Method " Url="html/M_Comuna_Graphviz_Node_Equals.htm" />
+        <HelpTOCNode Title="GetHashCode Method " Url="html/M_Comuna_Graphviz_Node_GetHashCode.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="f6577689-9f63-4933-af78-065ed68980db" Title="Node Operators" Url="html/Operators_T_Comuna_Graphviz_Node.htm">
+        <HelpTOCNode Title="Equality Operator " Url="html/M_Comuna_Graphviz_Node_op_Equality.htm" />
+        <HelpTOCNode Title="Inequality Operator " Url="html/M_Comuna_Graphviz_Node_op_Inequality.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Title="PaletteGenerator Delegate" Url="html/T_Comuna_Graphviz_PaletteGenerator.htm" />
+    <HelpTOCNode Id="01660526-19c0-461e-bbd1-b84224b9492c" Title="TolPalettes Class" Url="html/T_Comuna_Graphviz_TolPalettes.htm">
+      <HelpTOCNode Id="bd7bd5b3-6b93-41a6-bb2e-d4a755a3cd4c" Title="TolPalettes Methods" Url="html/Methods_T_Comuna_Graphviz_TolPalettes.htm">
+        <HelpTOCNode Title="CreateTolDivPalette Method " Url="html/M_Comuna_Graphviz_TolPalettes_CreateTolDivPalette.htm" />
+        <HelpTOCNode Title="CreateTolRainbowPalette Method " Url="html/M_Comuna_Graphviz_TolPalettes_CreateTolRainbowPalette.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+</HelpTOC>

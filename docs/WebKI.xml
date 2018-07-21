@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpKI>
+  <HelpKINode Title="AddEdge method" Url="html/M_Comuna_Network_AddEdge.htm" />
+  <HelpKINode Title="AddVertex method" Url="html/M_Comuna_Network_AddVertex.htm" />
+  <HelpKINode Title="Clear method" Url="html/M_Comuna_Network_Clear.htm" />
+  <HelpKINode Title="ClearConnections method" Url="html/M_Comuna_Network_ClearConnections.htm" />
+  <HelpKINode Title="ClearNodes method" Url="html/M_Comuna_Network_ClearNodes.htm" />
+  <HelpKINode Title="Color property" Url="html/P_Comuna_Graphviz_Node_Color.htm" />
+  <HelpKINode Title="Communities property" Url="html/P_Comuna_CommunityAlgorithm_Communities.htm" />
+  <HelpKINode Title="Community property">
+    <HelpKINode Title="Node.Community Property " Url="html/P_Comuna_D3_Node_Community.htm" />
+    <HelpKINode Title="Node.Community Property " Url="html/P_Comuna_Graphviz_Node_Community.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CommunityAlg property" Url="html/P_Comuna_D3_CommunityTracker_CommunityAlg.htm" />
+  <HelpKINode Title="CommunityAlgorithm class">
+    <HelpKINode Title="CommunityAlgorithm Class" Url="html/T_Comuna_CommunityAlgorithm.htm" />
+    <HelpKINode Title="constructor" Url="html/M_Comuna_CommunityAlgorithm__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Comuna_CommunityAlgorithm.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Comuna_CommunityAlgorithm.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CommunityAlgorithm.Communities property" Url="html/P_Comuna_CommunityAlgorithm_Communities.htm" />
+  <HelpKINode Title="CommunityAlgorithm.CommunityAlgorithm constructor" Url="html/M_Comuna_CommunityAlgorithm__ctor.htm" />
+  <HelpKINode Title="CommunityAlgorithm.DisplayCommunities method" Url="html/M_Comuna_CommunityAlgorithm_DisplayCommunities.htm" />
+  <HelpKINode Title="CommunityAlgorithm.DisplayCommunityGraph method" Url="html/M_Comuna_CommunityAlgorithm_DisplayCommunityGraph.htm" />
+  <HelpKINode Title="CommunityAlgorithm.DisplayNodesCommunities method" Url="html/M_Comuna_CommunityAlgorithm_DisplayNodesCommunities.htm" />
+  <HelpKINode Title="CommunityAlgorithm.DisplayPartition method" Url="html/M_Comuna_CommunityAlgorithm_DisplayPartition.htm" />
+  <HelpKINode Title="CommunityAlgorithm.Dispose method" Url="html/M_Comuna_CommunityAlgorithm_Dispose.htm" />
+  <HelpKINode Title="CommunityAlgorithm.GetCommunityNetwork method" Url="html/M_Comuna_CommunityAlgorithm_GetCommunityNetwork.htm" />
+  <HelpKINode Title="CommunityAlgorithm.GetModularity method" Url="html/M_Comuna_CommunityAlgorithm_GetModularity.htm" />
+  <HelpKINode Title="CommunityAlgorithm.GetNumberCommunities method" Url="html/M_Comuna_CommunityAlgorithm_GetNumberCommunities.htm" />
+  <HelpKINode Title="CommunityAlgorithm.LoadFromFile method" Url="html/M_Comuna_CommunityAlgorithm_LoadFromFile.htm" />
+  <HelpKINode Title="CommunityAlgorithm.MinModularity property" Url="html/P_Comuna_CommunityAlgorithm_MinModularity.htm" />
+  <HelpKINode Title="CommunityAlgorithm.Network property" Url="html/P_Comuna_CommunityAlgorithm_Network.htm" />
+  <HelpKINode Title="CommunityAlgorithm.NodesCommunities property" Url="html/P_Comuna_CommunityAlgorithm_NodesCommunities.htm" />
+  <HelpKINode Title="CommunityAlgorithm.NumPasses property" Url="html/P_Comuna_CommunityAlgorithm_NumPasses.htm" />
+  <HelpKINode Title="CommunityAlgorithm.RenumberCommunities method" Url="html/M_Comuna_CommunityAlgorithm_RenumberCommunities.htm" />
+  <HelpKINode Title="CommunityAlgorithm.Size property" Url="html/P_Comuna_CommunityAlgorithm_Size.htm" />
+  <HelpKINode Title="CommunityAlgorithm.Update method" Url="html/M_Comuna_CommunityAlgorithm_Update.htm" />
+  <HelpKINode Title="CommunityTracker class">
+    <HelpKINode Title="CommunityTracker Class" Url="html/T_Comuna_D3_CommunityTracker.htm" />
+    <HelpKINode Title="constructor" Url="html/M_Comuna_D3_CommunityTracker__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Comuna_D3_CommunityTracker.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Comuna_D3_CommunityTracker.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CommunityTracker.CommunityAlg property" Url="html/P_Comuna_D3_CommunityTracker_CommunityAlg.htm" />
+  <HelpKINode Title="CommunityTracker.CommunityTracker constructor" Url="html/M_Comuna_D3_CommunityTracker__ctor.htm" />
+  <HelpKINode Title="CommunityTracker.Dispose method" Url="html/M_Comuna_D3_CommunityTracker_Dispose.htm" />
+  <HelpKINode Title="CommunityTracker.FilePath property" Url="html/P_Comuna_D3_CommunityTracker_FilePath.htm" />
+  <HelpKINode Title="CommunityTracker.Network property" Url="html/P_Comuna_D3_CommunityTracker_Network.htm" />
+  <HelpKINode Title="CommunityTracker.Update method" Url="html/M_Comuna_D3_CommunityTracker_Update.htm" />
+  <HelpKINode Title="Comuna namespace" Url="html/N_Comuna.htm" />
+  <HelpKINode Title="Comuna.CommunityAlgorithm class" Url="html/T_Comuna_CommunityAlgorithm.htm" />
+  <HelpKINode Title="Comuna.Connection class" Url="html/T_Comuna_Connection.htm" />
+  <HelpKINode Title="Comuna.D3 namespace" Url="html/N_Comuna_D3.htm" />
+  <HelpKINode Title="Comuna.D3.CommunityTracker class" Url="html/T_Comuna_D3_CommunityTracker.htm" />
+  <HelpKINode Title="Comuna.D3.D3Extensions class" Url="html/T_Comuna_D3_D3Extensions.htm" />
+  <HelpKINode Title="Comuna.D3.Graph class" Url="html/T_Comuna_D3_Graph.htm" />
+  <HelpKINode Title="Comuna.D3.Link class" Url="html/T_Comuna_D3_Link.htm" />
+  <HelpKINode Title="Comuna.D3.Node class" Url="html/T_Comuna_D3_Node.htm" />
+  <HelpKINode Title="Comuna.Graphviz namespace" Url="html/N_Comuna_Graphviz.htm" />
+  <HelpKINode Title="Comuna.Graphviz.Edge class" Url="html/T_Comuna_Graphviz_Edge.htm" />
+  <HelpKINode Title="Comuna.Graphviz.Extensions class" Url="html/T_Comuna_Graphviz_Extensions.htm" />
+  <HelpKINode Title="Comuna.Graphviz.Node class" Url="html/T_Comuna_Graphviz_Node.htm" />
+  <HelpKINode Title="Comuna.Graphviz.PaletteGenerator delegate" Url="html/T_Comuna_Graphviz_PaletteGenerator.htm" />
+  <HelpKINode Title="Comuna.Graphviz.TolPalettes class" Url="html/T_Comuna_Graphviz_TolPalettes.htm" />
+  <HelpKINode Title="Comuna.Network class" Url="html/T_Comuna_Network.htm" />
+  <HelpKINode Title="Connection class">
+    <HelpKINode Title="Connection Class" Url="html/T_Comuna_Connection.htm" />
+    <HelpKINode Title="constructor" Url="html/M_Comuna_Connection__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Comuna_Connection.htm" />
+    <HelpKINode Title="operators" Url="html/Operators_T_Comuna_Connection.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Comuna_Connection.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Connection.Connection constructor" Url="html/M_Comuna_Connection__ctor.htm" />
+  <HelpKINode Title="Connection.Equality operator" Url="html/M_Comuna_Connection_op_Equality.htm" />
+  <HelpKINode Title="Connection.Equals method" Url="html/Overload_Comuna_Connection_Equals.htm" />
+  <HelpKINode Title="Connection.GetHashCode method" Url="html/M_Comuna_Connection_GetHashCode.htm" />
+  <HelpKINode Title="Connection.Inequality operator" Url="html/M_Comuna_Connection_op_Inequality.htm" />
+  <HelpKINode Title="Connection.Source property" Url="html/P_Comuna_Connection_Source.htm" />
+  <HelpKINode Title="Connection.Target property" Url="html/P_Comuna_Connection_Target.htm" />
+  <HelpKINode Title="Connection.ToString method" Url="html/M_Comuna_Connection_ToString.htm" />
+  <HelpKINode Title="Connection.Weight property" Url="html/P_Comuna_Connection_Weight.htm" />
+  <HelpKINode Title="CreateTolDivPalette method" Url="html/M_Comuna_Graphviz_TolPalettes_CreateTolDivPalette.htm" />
+  <HelpKINode Title="CreateTolRainbowPalette method" Url="html/M_Comuna_Graphviz_TolPalettes_CreateTolRainbowPalette.htm" />
+  <HelpKINode Title="D3Extensions class">
+    <HelpKINode Title="D3Extensions Class" Url="html/T_Comuna_D3_D3Extensions.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Comuna_D3_D3Extensions.htm" />
+  </HelpKINode>
+  <HelpKINode Title="D3Extensions.ToD3GraphFile method" Url="html/M_Comuna_D3_D3Extensions_ToD3GraphFile.htm" />
+  <HelpKINode Title="DisplayCommunities method" Url="html/M_Comuna_CommunityAlgorithm_DisplayCommunities.htm" />
+  <HelpKINode Title="DisplayCommunityGraph method" Url="html/M_Comuna_CommunityAlgorithm_DisplayCommunityGraph.htm" />
+  <HelpKINode Title="DisplayNodesCommunities method" Url="html/M_Comuna_CommunityAlgorithm_DisplayNodesCommunities.htm" />
+  <HelpKINode Title="DisplayPartition method" Url="html/M_Comuna_CommunityAlgorithm_DisplayPartition.htm" />
+  <HelpKINode Title="Dispose method">
+    <HelpKINode Title="CommunityAlgorithm.Dispose Method " Url="html/M_Comuna_CommunityAlgorithm_Dispose.htm" />
+    <HelpKINode Title="CommunityTracker.Dispose Method " Url="html/M_Comuna_D3_CommunityTracker_Dispose.htm" />
+    <HelpKINode Title="Network.Dispose Method " Url="html/M_Comuna_Network_Dispose.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Edge class">
+    <HelpKINode Title="Edge Class" Url="html/T_Comuna_Graphviz_Edge.htm" />
+    <HelpKINode Title="constructor" Url="html/M_Comuna_Graphviz_Edge__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Comuna_Graphviz_Edge.htm" />
+    <HelpKINode Title="operators" Url="html/Operators_T_Comuna_Graphviz_Edge.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Comuna_Graphviz_Edge.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Edge.Edge constructor" Url="html/M_Comuna_Graphviz_Edge__ctor.htm" />
+  <HelpKINode Title="Edge.Equality operator" Url="html/M_Comuna_Graphviz_Edge_op_Equality.htm" />
+  <HelpKINode Title="Edge.Equals method" Url="html/Overload_Comuna_Graphviz_Edge_Equals.htm" />
+  <HelpKINode Title="Edge.GetHashCode method" Url="html/M_Comuna_Graphviz_Edge_GetHashCode.htm" />
+  <HelpKINode Title="Edge.Inequality operator" Url="html/M_Comuna_Graphviz_Edge_op_Inequality.htm" />
+  <HelpKINode Title="Edge.ShowLabel property" Url="html/P_Comuna_Graphviz_Edge_ShowLabel.htm" />
+  <HelpKINode Title="Edge.Source property" Url="html/P_Comuna_Graphviz_Edge_Source.htm" />
+  <HelpKINode Title="Edge.Target property" Url="html/P_Comuna_Graphviz_Edge_Target.htm" />
+  <HelpKINode Title="Edge.ToString method" Url="html/M_Comuna_Graphviz_Edge_ToString.htm" />
+  <HelpKINode Title="Edge.Weight property" Url="html/P_Comuna_Graphviz_Edge_Weight.htm" />
+  <HelpKINode Title="Equality operator">
+    <HelpKINode Title="Connection.Equality Operator " Url="html/M_Comuna_Connection_op_Equality.htm" />
+    <HelpKINode Title="Edge.Equality Operator " Url="html/M_Comuna_Graphviz_Edge_op_Equality.htm" />
+    <HelpKINode Title="Node.Equality Operator " Url="html/M_Comuna_Graphviz_Node_op_Equality.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Equals method">
+    <HelpKINode Title="Connection.Equals Method " Url="html/Overload_Comuna_Connection_Equals.htm" />
+    <HelpKINode Title="Edge.Equals Method " Url="html/Overload_Comuna_Graphviz_Edge_Equals.htm" />
+    <HelpKINode Title="Node.Equals Method " Url="html/M_Comuna_Graphviz_Node_Equals.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Extensions class">
+    <HelpKINode Title="Extensions Class" Url="html/T_Comuna_Graphviz_Extensions.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Comuna_Graphviz_Extensions.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Extensions.ToGraphvizFile method" Url="html/M_Comuna_Graphviz_Extensions_ToGraphvizFile.htm" />
+  <HelpKINode Title="FilePath property" Url="html/P_Comuna_D3_CommunityTracker_FilePath.htm" />
+  <HelpKINode Title="GetCommunityNetwork method" Url="html/M_Comuna_CommunityAlgorithm_GetCommunityNetwork.htm" />
+  <HelpKINode Title="GetHashCode method">
+    <HelpKINode Title="Connection.GetHashCode Method " Url="html/M_Comuna_Connection_GetHashCode.htm" />
+    <HelpKINode Title="Edge.GetHashCode Method " Url="html/M_Comuna_Graphviz_Edge_GetHashCode.htm" />
+    <HelpKINode Title="Node.GetHashCode Method " Url="html/M_Comuna_Graphviz_Node_GetHashCode.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GetModularity method" Url="html/M_Comuna_CommunityAlgorithm_GetModularity.htm" />
+  <HelpKINode Title="GetNumberCommunities method" Url="html/M_Comuna_CommunityAlgorithm_GetNumberCommunities.htm" />
+  <HelpKINode Title="Graph class">
+    <HelpKINode Title="Graph Class" Url="html/T_Comuna_D3_Graph.htm" />
+    <HelpKINode Title="constructor" Url="html/M_Comuna_D3_Graph__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Comuna_D3_Graph.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Comuna_D3_Graph.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Graph.Graph constructor" Url="html/M_Comuna_D3_Graph__ctor.htm" />
+  <HelpKINode Title="Graph.Links property" Url="html/P_Comuna_D3_Graph_Links.htm" />
+  <HelpKINode Title="Graph.Nodes property" Url="html/P_Comuna_D3_Graph_Nodes.htm" />
+  <HelpKINode Title="ID property" Url="html/P_Comuna_D3_Node_ID.htm" />
+  <HelpKINode Title="IdNum property">
+    <HelpKINode Title="Node.IdNum Property " Url="html/P_Comuna_Graphviz_Node_IdNum.htm" />
+    <HelpKINode Title="Node.IdNum Property " Url="html/P_Comuna_D3_Node_IdNum.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Inequality operator">
+    <HelpKINode Title="Connection.Inequality Operator " Url="html/M_Comuna_Connection_op_Inequality.htm" />
+    <HelpKINode Title="Edge.Inequality Operator " Url="html/M_Comuna_Graphviz_Edge_op_Inequality.htm" />
+    <HelpKINode Title="Node.Inequality Operator " Url="html/M_Comuna_Graphviz_Node_op_Inequality.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Link class">
+    <HelpKINode Title="Link Class" Url="html/T_Comuna_D3_Link.htm" />
+    <HelpKINode Title="constructor" Url="html/M_Comuna_D3_Link__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Comuna_D3_Link.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Comuna_D3_Link.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Link.Link constructor" Url="html/M_Comuna_D3_Link__ctor.htm" />
+  <HelpKINode Title="Link.Source property" Url="html/P_Comuna_D3_Link_Source.htm" />
+  <HelpKINode Title="Link.Target property" Url="html/P_Comuna_D3_Link_Target.htm" />
+  <HelpKINode Title="Link.Value property" Url="html/P_Comuna_D3_Link_Value.htm" />
+  <HelpKINode Title="Links property" Url="html/P_Comuna_D3_Graph_Links.htm" />
+  <HelpKINode Title="LoadFromCsv method" Url="html/M_Comuna_Network_LoadFromCsv.htm" />
+  <HelpKINode Title="LoadFromFile method" Url="html/M_Comuna_CommunityAlgorithm_LoadFromFile.htm" />
+  <HelpKINode Title="MinModularity property" Url="html/P_Comuna_CommunityAlgorithm_MinModularity.htm" />
+  <HelpKINode Title="Network class">
+    <HelpKINode Title="Network Class" Url="html/T_Comuna_Network.htm" />
+    <HelpKINode Title="constructor" Url="html/M_Comuna_Network__ctor.htm" />
+    <HelpKINode Title="events" Url="html/Events_T_Comuna_Network.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Comuna_Network.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Comuna_Network.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Network property">
+    <HelpKINode Title="CommunityAlgorithm.Network Property " Url="html/P_Comuna_CommunityAlgorithm_Network.htm" />
+    <HelpKINode Title="CommunityTracker.Network Property " Url="html/P_Comuna_D3_CommunityTracker_Network.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Network.AddEdge method" Url="html/M_Comuna_Network_AddEdge.htm" />
+  <HelpKINode Title="Network.AddVertex method" Url="html/M_Comuna_Network_AddVertex.htm" />
+  <HelpKINode Title="Network.Clear method" Url="html/M_Comuna_Network_Clear.htm" />
+  <HelpKINode Title="Network.ClearConnections method" Url="html/M_Comuna_Network_ClearConnections.htm" />
+  <HelpKINode Title="Network.ClearNodes method" Url="html/M_Comuna_Network_ClearNodes.htm" />
+  <HelpKINode Title="Network.Dispose method" Url="html/M_Comuna_Network_Dispose.htm" />
+  <HelpKINode Title="Network.LoadFromCsv method" Url="html/M_Comuna_Network_LoadFromCsv.htm" />
+  <HelpKINode Title="Network.Network constructor" Url="html/M_Comuna_Network__ctor.htm" />
+  <HelpKINode Title="Network.RemoveEdge method" Url="html/M_Comuna_Network_RemoveEdge.htm" />
+  <HelpKINode Title="Network.RemoveVertex method" Url="html/M_Comuna_Network_RemoveVertex.htm" />
+  <HelpKINode Title="Network.SaveToCsv method" Url="html/M_Comuna_Network_SaveToCsv.htm" />
+  <HelpKINode Title="Network.ToString method" Url="html/M_Comuna_Network_ToString.htm" />
+  <HelpKINode Title="Network.TotalWeight property" Url="html/P_Comuna_Network_TotalWeight.htm" />
+  <HelpKINode Title="Network.Weights property" Url="html/P_Comuna_Network_Weights.htm" />
+  <HelpKINode Title="Node class">
+    <HelpKINode Title="Node Class" Url="html/T_Comuna_D3_Node.htm" />
+    <HelpKINode Title="Node Class" Url="html/T_Comuna_Graphviz_Node.htm" />
+    <HelpKINode Title="constructor" Url="html/M_Comuna_Graphviz_Node__ctor.htm" />
+    <HelpKINode Title="constructor" Url="html/M_Comuna_D3_Node__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Comuna_D3_Node.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Comuna_Graphviz_Node.htm" />
+    <HelpKINode Title="operators" Url="html/Operators_T_Comuna_Graphviz_Node.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Comuna_D3_Node.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Comuna_Graphviz_Node.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Node.Color property" Url="html/P_Comuna_Graphviz_Node_Color.htm" />
+  <HelpKINode Title="Node.Community property">
+    <HelpKINode Title="Node.Community Property " Url="html/P_Comuna_Graphviz_Node_Community.htm" />
+    <HelpKINode Title="Node.Community Property " Url="html/P_Comuna_D3_Node_Community.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Node.Equality operator" Url="html/M_Comuna_Graphviz_Node_op_Equality.htm" />
+  <HelpKINode Title="Node.Equals method" Url="html/M_Comuna_Graphviz_Node_Equals.htm" />
+  <HelpKINode Title="Node.GetHashCode method" Url="html/M_Comuna_Graphviz_Node_GetHashCode.htm" />
+  <HelpKINode Title="Node.ID property" Url="html/P_Comuna_D3_Node_ID.htm" />
+  <HelpKINode Title="Node.IdNum property">
+    <HelpKINode Title="Node.IdNum Property " Url="html/P_Comuna_Graphviz_Node_IdNum.htm" />
+    <HelpKINode Title="Node.IdNum Property " Url="html/P_Comuna_D3_Node_IdNum.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Node.Inequality operator" Url="html/M_Comuna_Graphviz_Node_op_Inequality.htm" />
+  <HelpKINode Title="Node.Node constructor">
+    <HelpKINode Title="Node Constructor " Url="html/M_Comuna_D3_Node__ctor.htm" />
+    <HelpKINode Title="Node Constructor " Url="html/M_Comuna_Graphviz_Node__ctor.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Node.ShowLabel property" Url="html/P_Comuna_Graphviz_Node_ShowLabel.htm" />
+  <HelpKINode Title="Nodes property" Url="html/P_Comuna_D3_Graph_Nodes.htm" />
+  <HelpKINode Title="NodesCommunities property" Url="html/P_Comuna_CommunityAlgorithm_NodesCommunities.htm" />
+  <HelpKINode Title="NumPasses property" Url="html/P_Comuna_CommunityAlgorithm_NumPasses.htm" />
+  <HelpKINode Title="PaletteGenerator delegate" Url="html/T_Comuna_Graphviz_PaletteGenerator.htm" />
+  <HelpKINode Title="RemoveEdge method" Url="html/M_Comuna_Network_RemoveEdge.htm" />
+  <HelpKINode Title="RemoveVertex method" Url="html/M_Comuna_Network_RemoveVertex.htm" />
+  <HelpKINode Title="RenumberCommunities method" Url="html/M_Comuna_CommunityAlgorithm_RenumberCommunities.htm" />
+  <HelpKINode Title="SaveToCsv method" Url="html/M_Comuna_Network_SaveToCsv.htm" />
+  <HelpKINode Title="ShowLabel property">
+    <HelpKINode Title="Edge.ShowLabel Property " Url="html/P_Comuna_Graphviz_Edge_ShowLabel.htm" />
+    <HelpKINode Title="Node.ShowLabel Property " Url="html/P_Comuna_Graphviz_Node_ShowLabel.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Size property" Url="html/P_Comuna_CommunityAlgorithm_Size.htm" />
+  <HelpKINode Title="Source property">
+    <HelpKINode Title="Connection.Source Property " Url="html/P_Comuna_Connection_Source.htm" />
+    <HelpKINode Title="Edge.Source Property " Url="html/P_Comuna_Graphviz_Edge_Source.htm" />
+    <HelpKINode Title="Link.Source Property " Url="html/P_Comuna_D3_Link_Source.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Target property">
+    <HelpKINode Title="Connection.Target Property " Url="html/P_Comuna_Connection_Target.htm" />
+    <HelpKINode Title="Edge.Target Property " Url="html/P_Comuna_Graphviz_Edge_Target.htm" />
+    <HelpKINode Title="Link.Target Property " Url="html/P_Comuna_D3_Link_Target.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ToD3GraphFile method" Url="html/M_Comuna_D3_D3Extensions_ToD3GraphFile.htm" />
+  <HelpKINode Title="ToGraphvizFile method" Url="html/M_Comuna_Graphviz_Extensions_ToGraphvizFile.htm" />
+  <HelpKINode Title="TolPalettes class">
+    <HelpKINode Title="TolPalettes Class" Url="html/T_Comuna_Graphviz_TolPalettes.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Comuna_Graphviz_TolPalettes.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TolPalettes.CreateTolDivPalette method" Url="html/M_Comuna_Graphviz_TolPalettes_CreateTolDivPalette.htm" />
+  <HelpKINode Title="TolPalettes.CreateTolRainbowPalette method" Url="html/M_Comuna_Graphviz_TolPalettes_CreateTolRainbowPalette.htm" />
+  <HelpKINode Title="ToString method">
+    <HelpKINode Title="Connection.ToString Method " Url="html/M_Comuna_Connection_ToString.htm" />
+    <HelpKINode Title="Edge.ToString Method " Url="html/M_Comuna_Graphviz_Edge_ToString.htm" />
+    <HelpKINode Title="Network.ToString Method " Url="html/M_Comuna_Network_ToString.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TotalWeight property" Url="html/P_Comuna_Network_TotalWeight.htm" />
+  <HelpKINode Title="Update method">
+    <HelpKINode Title="CommunityAlgorithm.Update Method " Url="html/M_Comuna_CommunityAlgorithm_Update.htm" />
+    <HelpKINode Title="CommunityTracker.Update Method " Url="html/M_Comuna_D3_CommunityTracker_Update.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Value property" Url="html/P_Comuna_D3_Link_Value.htm" />
+  <HelpKINode Title="Weight property">
+    <HelpKINode Title="Connection.Weight Property " Url="html/P_Comuna_Connection_Weight.htm" />
+    <HelpKINode Title="Edge.Weight Property " Url="html/P_Comuna_Graphviz_Edge_Weight.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Weights property" Url="html/P_Comuna_Network_Weights.htm" />
+  <HelpKINode Title="Welcome" Url="html/e8ac8daa-3957-4d6a-b330-fd86661bc52a.htm" />
+</HelpKI>

@@ -1,0 +1,350 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="e8ac8daa-3957-4d6a-b330-fd86661bc52a" revisionNumber="1">
+  <developerConceptualDocument
+    xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <quote>
+        <para>A community analysis, tracking and graphing library for social networks written in C#</para>
+      </quote>
+      <para>
+        Comuna is a .NET open-source library written entirely in C# that implements the <legacyItalic>Louvain method</legacyItalic> for finding communities in large networks as described in [Blondel <legacyItalic>et. al</legacyItalic>, 2008]. The code corresponds to a C# adaptation of the C++ code in <externalLink>
+          <linkText>https://sites.google.com/site/findcommunities/</linkText>
+          <linkUri>https://sites.google.com/site/findcommunities/</linkUri>
+          <linkTarget>_blank</linkTarget>
+        </externalLink>. The main concept is that of <legacyItalic>network modularity</legacyItalic> that assesses the quality of the current community partition. The algorithm works by successively improving the network&#39;s modularity by trying to change the community that each node belongs to. If there is no improvement in modularity this means that the best community partition has been found.
+      </para>
+      <para>
+        Comuna.NET supports multiple updates to the underlying network connections (graph links), <legacyItalic>i.e.</legacyItalic>, it allows the analysis of the <legacyItalic>evolution of communities</legacyItalic> in a network.  In addition, the results of community analysis can be exported to multiple formats. Specifically, Comuna.NET exports to image formats for the visualization of network structure and communities via <externalLink>
+          <linkText>Graphviz</linkText>
+          <linkUri>https://www.graphviz.org/</linkUri>
+        </externalLink>, and to json files that can be imported into <externalLink>
+          <linkText>Communities Viewer</linkText>
+          <linkUri>https://github.com/pedrodbs/CommunitiesViewer</linkUri>
+        </externalLink>, an interactive web-application using <externalLink>
+          <linkText>D3.js</linkText>
+          <linkUri>https://d3js.org/</linkUri>
+        </externalLink>.
+      </para>
+      <para>
+        <legacyBold>Table of contents</legacyBold>
+      </para>
+      <list class="bullet">
+        <listItem>
+          <link xlink:href="#header-n38">About</link>
+        </listItem>
+        <listItem>
+          <link xlink:href="#header-n54">API Documentation</link>
+        </listItem>
+        <listItem>
+          <link xlink:href="#header-n65">Packages and Dependencies</link>
+        </listItem>
+        <listItem>
+          <link xlink:href="#header-n90">Installation</link>
+        </listItem>
+        <listItem>
+          <link xlink:href="#header-n123">Features</link>
+        </listItem>
+        <listItem>
+          <link xlink:href="#header-n181">Examples</link>
+        </listItem>
+        <listItem>
+          <link xlink:href="#header-n199">See Also</link>
+        </listItem>
+
+      </list>
+      <para/>
+    </introduction>
+
+<section><!--h2-->
+  <title>About</title>
+  <content>
+<para>Comuna.NET is open-source under the <externalLink>
+  <linkText>MIT license</linkText>
+  <linkUri>https://github.com/pedrodbs/Comuna/blob/master/LICENSE.md</linkUri>
+</externalLink> and is free for commercial use.</para>
+<list class="bullet">
+<listItem>Source repository: <externalLink>
+  <linkText>https://github.com/pedrodbs/Comuna</linkText>
+  <linkUri>https://github.com/pedrodbs/Comuna</linkUri>
+  <linkTarget>_blank</linkTarget>
+</externalLink></listItem>
+<listItem>Issue tracker: <externalLink>
+  <linkText>https://github.com/pedrodbs/Comuna/issues</linkText>
+  <linkUri>https://github.com/pedrodbs/Comuna/issues</linkUri>
+  <linkTarget>_blank</linkTarget>
+</externalLink></listItem>
+
+</list>
+<para>Supported platforms:</para>
+<list class="bullet">
+<listItem>All runtimes supporting <legacyItalic>.NET Standard 1.3+</legacyItalic> (<legacyItalic>.NET Core 1.0+</legacyItalic>, <legacyItalic>.NET Framework 4.6+</legacyItalic>) on Windows, Linux and Mac</listItem>
+
+</list>
+  </content>
+</section>
+
+<section><!--h2-->
+  <title>API Documentation</title>
+  <content>
+<list class="bullet">
+<listItem><externalLink>
+  <linkText>HTML</linkText>
+  <linkUri>https://pedrodbs.github.io/Comuna/</linkUri>
+</externalLink></listItem>
+<listItem><externalLink>
+  <linkText>Windows Help file (CHM)</linkText>
+  <linkUri>https://github.com/pedrodbs/Comuna/raw/master/docs/Comuna.NET.chm</linkUri>
+</externalLink></listItem>
+<listItem><externalLink>
+  <linkText>PDF document</linkText>
+  <linkUri>https://github.com/pedrodbs/Comuna/raw/master/docs/Comuna.NET.pdf</linkUri>
+</externalLink></listItem>
+
+</list>
+  </content>
+</section>
+
+<section><!--h2-->
+  <title>Packages and Dependencies</title>
+  <content>
+<para>The following packages with the corresponding dependencies are provided:</para>
+<list class="bullet">
+<listItem><para><legacyBold>Comuna:</legacyBold> core package with the communities analyzer. </para>
+<list class="bullet">
+<listItem><externalLink>
+  <linkText>QuickGraph</linkText>
+  <linkUri>https://github.com/pedrodbs/quickgraph</linkUri>
+</externalLink> (forked to allow colored edges and vertexes when exporting to Graphviz dot format)</listItem>
+
+</list>
+</listItem>
+<listItem><para><legacyBold>Comuna.D3:</legacyBold> package that includes the communities tracker algorithm and the methods to export them to Json files to be visualized with D3.js. </para>
+<list class="bullet">
+<listItem><externalLink>
+  <linkText>Json.NET</linkText>
+  <linkUri>https://www.nuget.org/packages/Newtonsoft.Json/</linkUri>
+</externalLink> v11.0.2</listItem>
+
+</list>
+</listItem>
+<listItem><para><legacyBold>Comuna.Graphviz:</legacyBold> package to create undirected graph representations for the networks and communities and export them to image files via <externalLink>
+  <linkText>Graphviz</linkText>
+  <linkUri>https://www.graphviz.org/</linkUri>
+</externalLink>.</para>
+<list class="bullet">
+<listItem><externalLink>
+  <linkText>QuickGraph</linkText>
+  <linkUri>https://github.com/pedrodbs/quickgraph</linkUri>
+</externalLink> (forked to allow colored edges and vertexes when exporting to Graphviz dot format)</listItem>
+
+</list>
+</listItem>
+
+</list>
+  </content>
+</section>
+
+<section><!--h2-->
+  <title>Installation</title>
+  <content>
+<para>You can <codeInline>git clone</codeInline> the Comuna.NET <externalLink>
+  <linkText>source code</linkText>
+  <linkUri>https://github.com/pedrodbs/Comuna</linkUri>
+</externalLink> and use an IDE like VisualStudio to build the corresponding binaries.</para>
+  </content>
+</section>
+
+<section><!--h2-->
+  <title>Getting started</title>
+  <content>
+<para>Consider the following <legacyItalic>network</legacyItalic> example from [Blondel <legacyItalic>et. al</legacyItalic>, 2008] represented as an undirected graph:</para>
+<para><mediaLink><image xlink:href="example" /></mediaLink></para>
+<para>where each node can represent a different person and links can denote a connection or relationship between two individuals. In this example all connections have a weight of $1$, but arbitrary weights can be provided denoting <legacyItalic>e.g.</legacyItalic>, different degrees of relationship.</para>
+<para>We start by creating a <codeInline>Network</codeInline> object and adding all <legacyItalic>nodes</legacyItalic>. In Comuna.NET each node is represented by a different <codeInline>uint</codeInline> identifier:</para>
+<code class='language-c#' lang='c#'>var network = new Network();
+for (var i = 0u; i &lt; 16; i++)
+    network.AddVertex(i);
+</code>
+<para>We then define each <codeInline>Connection</codeInline> in the network by adding <legacyItalic>edges</legacyItalic> between the nodes:</para>
+<code class='language-c#' lang='c#'>network.AddEdge(new Connection(0, 2));
+network.AddEdge(new Connection(0, 4));
+network.AddEdge(new Connection(0, 3));
+network.AddEdge(new Connection(0, 5));
+network.AddEdge(new Connection(1, 2));
+network.AddEdge(new Connection(1, 4));
+network.AddEdge(new Connection(1, 7));
+...
+</code>
+<para>After having defined the network we can create the algorithm to analyze the communities:</para>
+<code class='language-c#' lang='c#'>var communityAlg = new CommunityAlgorithm(network, -1, 0);
+</code>
+<para>where we define the <legacyItalic>number of passes</legacyItalic> of the algorithm (if $-1$, the algorithm computes as many passes as needed to increase the network&#39;s modularity) and the <legacyItalic>minimum modularity gain</legacyItalic>, corresponding to the criterion used to perform a new pass (if $0$, even a minor increase is enough to perform one more pass).</para>
+<para>We then update the algorithm to discover the communities in the network, <legacyItalic>i.e.</legacyItalic>, the best community partition:</para>
+<code class='language-c#' lang='c#'>communityAlg.Update();
+</code>
+<para>A call to <codeInline>DisplayCommunities</codeInline> will then result in the following output:</para>
+<code>Community: 0, Nodes: [8;9;10;12;14;15], In: 0, Tot: 20
+Community: 1, Nodes: [1;4;2;0;5], In: 14, Tot: 20
+Community: 2, Nodes: [11;13], In: -4, Tot: 7
+Community: 3, Nodes: [3;7;6], In: 4, Tot: 9
+</code>
+<para>By calling the <codeInline>Update</codeInline> function without arguments the nodes&#39; communities are automatically renumbered, meaning that their identifying numbers (<codeInline>uint</codeInline>) are the lowest possible. If we don&#39;t want to renumber the communities we would call:</para>
+<code class='language-c#' lang='c#'>communityAlg.Update(false);
+</code>
+<para>which would result in the following communities being formed:</para>
+<code>Community: 1, Nodes: [1;4;2;0;5], In: 14, Tot: 20
+Community: 3, Nodes: [3;7;6], In: 4, Tot: 9
+Community: 9, Nodes: [9;14;12;8;15;10], In: 16, Tot: 20
+Community: 11, Nodes: [11;13], In: 2, Tot: 7
+</code>
+  </content>
+</section>
+
+<section><!--h2-->
+  <title>Features</title>
+  <content>
+<list class="bullet">
+<listItem><para><legacyBold>CSV import and export</legacyBold></para>
+<list class="bullet">
+<listItem><para>Allows the creation of a new <codeInline>Network</codeInline> by reading the edge information stored in a given CSV (comma-separated values) file. The format is simply &#39;source_node, target_node [, weight]&#39;. If not provided, weight of the edge is considered to be $1$. For example, the following code would load the network stored in <codeInline>C:\network.csv</codeInline> :</para>
+<code class='language-c#' lang='c#'>network = Network.LoadFromCsv(&quot;C:\\network.csv&quot;);
+</code>
+</listItem>
+<listItem><para>Similarly, a network can be exported to a CSV file by calling:</para>
+<code class='language-c#' lang='c#'>network.SaveToCsv(&quot;C:\\network=export.csv&quot;);
+</code>
+</listItem>
+
+</list>
+</listItem>
+<listItem><para><legacyBold>Communities tracking &amp; D3.js export</legacyBold></para>
+<list class="bullet">
+<listItem><para>Let&#39;s now image that the network&#39;s connections are <legacyItalic>changing throughout time</legacyItalic> as a consequence of an external process, <legacyItalic>e.g.</legacyItalic>, that the relationships between the individuals in the network are developing, that new relationships are being formed or that existing relationships are ending. </para>
+</listItem>
+<listItem><para>In Comuna.NET, this corresponds to either adding or removing edges from the network, <legacyItalic>e.g.</legacyItalic>:</para>
+<code class='language-c#' lang='c#'>network.AddEdge(new Connection(0, 1));		// adding a new connection
+network.RemoveEdge(new Connection(0, 2));	// removing an existing connection
+</code>
+<para><legacyBold>Note:</legacyBold> to change the weight associated with a connection, we first remove the connection from the network and then add a new one with the new weight, <legacyItalic>e.g.</legacyItalic>:</para>
+<code class='language-c#' lang='c#'>network.RemoveEdge(new Connection(0, 2));	// removing an existing connection
+network.AddEdge(new Connection(0, 2, 0.5));	// changing the weight
+</code>
+</listItem>
+<listItem><para>By using the <legacyItalic>Comuna.D3</legacyItalic> package we can track the changes in the network&#39;s connections and the consequent changes in the nodes&#39; communities at each time step and later visualize them using the <externalLink>
+  <linkText>Communities Viewer</linkText>
+  <linkUri>https://github.com/pedrodbs/CommunitiesViewer</linkUri>
+</externalLink> web-application. To create the tracker we simply call:</para>
+<code class='language-c#' lang='c#'>using Comuna.D3
+...
+var tracker = new CommunityTracker(communityAlg, pathToD3File, maxUpdates)
+</code>
+<para>where <codeInline>pathToD3File</codeInline> is the path to the <legacyItalic>Json</legacyItalic> file where the network, its connections and the nodes&#39; communities are written after the update at each time step. <codeInline>maxUpdates</codeInline> is the <legacyItalic>maximum number of updates</legacyItalic> that are going to be performed to the network&#39;s connections.
+<legacyBold>Note:</legacyBold> the tracker initially creates the Json file and at each update it appends the information regarding changes in the network structure (addition and removal of nodes) and in the nodes&#39; communities.</para>
+</listItem>
+<listItem><para>At each time step, after updating the network&#39;s connections we also update the community algorithm and the tracker, <legacyItalic>e.g.</legacyItalic>: </para>
+<code class='language-c#' lang='c#'>for(var i=0; i&lt;100; i++)
+{
+    // update connections to network
+    ...
+    communityAlg.Update();
+    tracker.Update();
+}
+tracker.Dispose()
+</code>
+<para>where we can call <codeInline>tracker.Dispose()</codeInline> to release the lock to the Json file being updated.</para>
+</listItem>
+<listItem><para>When loaded in <externalLink>
+  <linkText>Communities Viewer</linkText>
+  <linkUri>https://github.com/pedrodbs/CommunitiesViewer</linkUri>
+</externalLink>, the first time step would produce the following community graph:</para>
+</listItem>
+
+</list>
+</listItem>
+<listItem><para><legacyBold>Graphviz export</legacyBold></para>
+<list class="bullet">
+<listItem><para>Export a program&#39;s tree representation to image file with <externalLink>
+  <linkText>Graphviz</linkText>
+  <linkUri>https://www.graphviz.org/</linkUri>
+</externalLink> (requires Graphviz installed and <legacyItalic>dot</legacyItalic> binary accessible from the system&#39;s path), <legacyItalic>e.g.</legacyItalic>:</para>
+<code class='language-c#' lang='c#'>using Comuna.Graphviz;
+using QuickGraph.Graphviz.Dot;
+...
+var filePath = communityAlg.ToGraphvizFile(
+	Path.GetFullPath(&quot;.&quot;), &quot;communities-graphviz.png&quot;, true, GraphvizImageType.Png);
+</code>
+<para>would produce the following image:</para>
+<para><mediaLink><image xlink:href="communities-graphviz" /></mediaLink></para>
+</listItem>
+
+</list>
+</listItem>
+
+</list>
+  </content>
+</section>
+
+<section><!--h2-->
+  <title>Examples</title>
+  <content>
+<para>Example code can be found in the <externalLink>
+  <linkText>src/Examples</linkText>
+  <linkUri>https://github.com/pedrodbs/Comuna/tree/master/src/Examples</linkUri>
+</externalLink> folder in the <externalLink>
+  <linkText>repository</linkText>
+  <linkUri>https://github.com/pedrodbs/Comuna</linkUri>
+</externalLink>. Several open-source social networks adapted to work with the example applications can be found in <externalLink>
+  <linkText>src/Examples/networks</linkText>
+  <linkUri>https://github.com/pedrodbs/Comuna/tree/master/src/Examples/networks</linkUri>
+</externalLink>.</para>
+<list class="bullet">
+<listItem><legacyBold>CommunitiesEvolution:</legacyBold> a simple example of the evolution of a social network involving tracking the addition and removal of connections. The results are saved to a Json file for later visualization.</listItem>
+<listItem><legacyBold>CommunitiesGenerator:</legacyBold> a Windows.Forms application to generate random network connections between a given number of nodes and also a random number of update time-steps. The final network structure and nodes&#39; communities is displayed and the corresponding Json file is saved.</listItem>
+<listItem><legacyBold>CommunitiesVisualizer:</legacyBold> a Windows.Forms application that allows loading a network from a CSV file for the visualization of the communities therein. The community algorithm can be parameterized and the result can be exported to an image file.</listItem>
+
+</list>
+  </content>
+</section>
+
+<section><!--h2-->
+  <title>See Also</title>
+  <content>
+<para><legacyBold>References</legacyBold></para>
+<list class="ordered">
+<listItem>Blondel, V. D., Guillaume, J. L., Lambiotte, R., &amp; Lefebvre, E. (2008). <externalLink>
+  <linkText>Fast unfolding of communities in large networks</linkText>
+  <linkUri>http://iopscience.iop.org/article/10.1088/1742-5468/2008/10/P10008</linkUri>
+</externalLink>. <legacyItalic>Journal of statistical mechanics: theory and experiment</legacyItalic>, <legacyItalic>2008</legacyItalic>(10), Bristol: IOP Publishing Ltd.</listItem>
+
+</list>
+<para><legacyBold>Other links</legacyBold></para>
+<list class="bullet">
+<listItem><externalLink>
+  <linkText>Louvain method: Finding communities in large networks</linkText>
+  <linkUri>https://sites.google.com/site/findcommunities/</linkUri>
+</externalLink></listItem>
+<listItem><externalLink>
+  <linkText>Communities Viewer</linkText>
+  <linkUri>https://github.com/pedrodbs/CommunitiesViewer</linkUri>
+</externalLink></listItem>
+<listItem><externalLink>
+  <linkText>D3.js</linkText>
+  <linkUri>https://d3js.org/</linkUri>
+</externalLink></listItem>
+
+</list>
+<para>Copyright &#169; 2018, <externalLink>
+  <linkText>Pedro Sequeira</linkText>
+  <linkUri>https://github.com/pedrodbs</linkUri>
+</externalLink></para>
+
+  </content>
+</section>
+
+    <relatedTopics>
+    </relatedTopics>
+
+  </developerConceptualDocument>
+</topic>
